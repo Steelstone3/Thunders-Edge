@@ -1,5 +1,5 @@
 using Moq;
-using ThundersEdge.Components.Interfaces;
+using ThundersEdge.Entities.Interfaces;
 using ThundersEdge.Systems;
 using ThundersEdge.Systems.Interfaces;
 using Xunit;

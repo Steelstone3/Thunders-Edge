@@ -1,4 +1,6 @@
-namespace ThundersEdge.Components.Interfaces
+using ThundersEdge.Components.Interfaces;
+
+namespace ThundersEdge.Entities.Interfaces
 {
     public interface ICard
     {

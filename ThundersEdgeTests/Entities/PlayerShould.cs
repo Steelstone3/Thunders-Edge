@@ -9,13 +9,21 @@ namespace ThundersEdgeTests.Models
 {
     public class PlayerShould
     {
+        private readonly Mock<IName> name = new();
         private readonly Mock<IDeck> deck = new();
         private readonly Mock<IEnumerable<ICastPointToken>> pointsTokens = new();
         private readonly IPlayer player;
 
         public PlayerShould()
         {
-            player = new Player(deck.Object, pointsTokens.Object);
+            player = new Player(name.Object, deck.Object, pointsTokens.Object);
+        }
+
+        [Fact]
+        public void ContainsPlayerName()
+        {
+            // Then
+            Assert.NotNull(player.Name);
         }
 
         [Fact]

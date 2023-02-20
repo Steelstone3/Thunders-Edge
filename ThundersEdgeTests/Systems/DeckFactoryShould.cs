@@ -1,7 +1,7 @@
 using Castle.Components.DictionaryAdapter;
 using Moq;
 using ThundersEdge;
-using ThundersEdge.Components.Interfaces;
+using ThundersEdge.Entities.Interfaces;
 using ThundersEdge.Systems.Interfaces;
 using Xunit;
 

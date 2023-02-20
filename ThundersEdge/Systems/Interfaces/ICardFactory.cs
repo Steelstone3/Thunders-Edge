@@ -1,4 +1,4 @@
-using ThundersEdge.Components.Interfaces;
+using ThundersEdge.Entities.Interfaces;
 
 namespace ThundersEdge.Systems.Interfaces
 {

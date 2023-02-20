@@ -8,5 +8,6 @@ namespace ThundersEdge.Entities.Interfaces
     {
         public IDeck Deck { get; }
         public IEnumerable<ICastPointToken> PointsTokens { get; }
+        IName Name { get; }
     }
 }

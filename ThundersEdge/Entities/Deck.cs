@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using ThundersEdge.Components.Interfaces;
+using ThundersEdge.Entities.Interfaces;
 
-namespace ThundersEdge.Components
+namespace ThundersEdge.Entities
 {
     public class Deck : IDeck
     {
