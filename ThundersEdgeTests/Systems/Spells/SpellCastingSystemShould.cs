@@ -1,27 +1,29 @@
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Moq;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Entities.Interfaces;
 using ThundersEdge.Presenters.Interfaces;
-using ThundersEdge.Systems;
 using ThundersEdge.Systems.Interfaces;
+using ThundersEdge.Systems.Spells;
 using Xunit;
 
-namespace ThundersEdgeTests.Systems
+namespace ThundersEdgeTests.Systems.Spells
 {
     public class SpellCastingSystemShould
     {
         private readonly Mock<ISpellCastingPresenter> spellCastingPresenter = new();
         private readonly Mock<IPlayer> player = new();
         private readonly Mock<ICard> card = new();
+        private readonly Mock<IDamagingSpellCastSystem> damagingSpellCastSystem = new();
         private readonly Mock<ISpell> spell = new();
         private readonly ISpellCastingSystem spellCastingSystem;
 
         public SpellCastingSystemShould()
         {
             SetupPlayerStub();
-            spellCastingSystem = new SpellCastingSystem(spellCastingPresenter.Object);
+            spellCastingSystem = new SpellCastingSystem(spellCastingPresenter.Object, damagingSpellCastSystem.Object);
         }
 
         [Fact]
@@ -31,7 +33,7 @@ namespace ThundersEdgeTests.Systems
             spellCastingPresenter.Setup(scp => scp.SelectAttackingCard(player.Object.Deck)).Returns(player.Object.Deck.Cards.ToList()[0]);
             spellCastingPresenter.Setup(scp => scp.SelectDefendingCard(player.Object.Deck)).Returns(player.Object.Deck.Cards.ToList()[0]);
             spellCastingPresenter.Setup(scp => scp.SelectSpell(player.Object.Deck.Cards.ToList()[0])).Returns(player.Object.Deck.Cards.ToList()[0].SpellGroup.Spells.ToList()[0]);
-            spell.Setup(s => s.CastSpell(player.Object.PointsTokens, card.Object));
+            spell.Setup(s => s.CastSpell(damagingSpellCastSystem.Object, player.Object.PointsTokens, card.Object));
 
             // When
             spellCastingSystem.CastSpell(player.Object, player.Object);

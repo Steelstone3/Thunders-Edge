@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using ThundersEdge.Entities.Interfaces;
+using ThundersEdge.Systems.Interfaces;
 
 namespace ThundersEdge.Components.Interfaces
 {
@@ -8,7 +9,8 @@ namespace ThundersEdge.Components.Interfaces
         IName Name { get; }
         CastingType CastElement { get; }
         byte CastingCost { get; }
+        byte Damage { get; }
 
-        void CastSpell(IEnumerable<ICastPointToken> pointsTokens, ICard defendingCard);
+        void CastSpell(IDamagingSpellCastSystem damagingSpellCastSystem, IEnumerable<ICastPointToken> castPointTokens, ICard defendingCard);
     }
 }

@@ -4,6 +4,7 @@ using ThundersEdge.Presenters.Interfaces;
 using ThundersEdge.Services;
 using ThundersEdge.Systems;
 using ThundersEdge.Systems.Interfaces;
+using ThundersEdge.Systems.Spells;
 
 namespace ThundersEdge
 {
@@ -16,8 +17,7 @@ namespace ThundersEdge
             ISpellCastingPresenter spellCastingPresenter = new SpellCastingPresenter(presenter);
             IRandomCharacterNameSystem randomCharacterNameSystem = new RandomCharacterNameSystem();
             ICharacterNameFactory characterNameFactory = new CharacterNameFactory(randomCharacterNameSystem);
-            ISpellFactory spellFactory = new SpellFactory();
-            ISpellGroupFactory spellGroupFactory = new SpellGroupFactory(spellFactory);
+            ISpellGroupFactory spellGroupFactory = new SpellGroupFactory();
             ICardFactory cardFactory = new CardFactory(characterNameFactory, spellGroupFactory);
             IDeckFactory deckFactory = new DeckFactory(cardFactory);
             ISpellTokenFactory pointsDeckFactory = new SpellTokenFactory();

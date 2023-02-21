@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using ThundersEdge.Components.Interfaces;
-using ThundersEdge.Systems;
 using ThundersEdge.Systems.Interfaces;
+using ThundersEdge.Systems.Spells;
 using Xunit;
 
-namespace ThundersEdgeTests.Systems
+namespace ThundersEdgeTests.Systems.Spells
 {
     public class SpellTokenFactoryShould
     {

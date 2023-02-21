@@ -1,11 +1,11 @@
 using Xunit;
 
-namespace ThundersEdgeTests.Systems
+namespace ThundersEdgeTests.Components.SpellGroups.Fire
 {
-    public class SpellFactoryShould
+    public class FireOffensiveSpellGroupShould
     {
         [Fact(Skip = "Later")]
-        public void Create()
+        public void ContainSpells()
         {
             // Given
 

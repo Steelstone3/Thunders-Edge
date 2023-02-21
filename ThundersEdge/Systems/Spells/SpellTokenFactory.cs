@@ -3,7 +3,7 @@ using ThundersEdge.Components;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Systems.Interfaces;
 
-namespace ThundersEdge.Systems
+namespace ThundersEdge.Systems.Spells
 {
     public class SpellTokenFactory : ISpellTokenFactory
     {
