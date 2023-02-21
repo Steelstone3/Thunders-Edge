@@ -20,7 +20,7 @@ namespace ThundersEdge.Systems
             ICard defendingCard = spellCastingPresenter.SelectDefendingCard(defendingPlayer.Deck);
             ISpell spell = spellCastingPresenter.SelectSpell(attackingCard);
 
-            spell.CastSpell(defendingCard);
+            spell.CastSpell(attackingPlayer.PointsTokens, defendingCard);
         }
     }
 }

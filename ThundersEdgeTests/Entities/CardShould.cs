@@ -1,4 +1,5 @@
 using Moq;
+using ThundersEdge.Components;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Entities;
 using ThundersEdge.Entities.Interfaces;
@@ -11,7 +12,7 @@ namespace ThundersEdgeTests.Entities
         private readonly Mock<ICharacterName> name = new();
         private readonly Mock<IHealth> health = new();
         private readonly Mock<ISpellGroup> spellGroup = new();
-        private readonly ICard card;
+        private ICard card;
 
         public CardShould()
         {
@@ -37,6 +38,20 @@ namespace ThundersEdgeTests.Entities
         {
             // Then
             Assert.NotNull(card.SpellGroup);
+        }
+
+        [Fact]
+        public void TakeDamage()
+        {
+            // Given
+            health.Setup(h => h.TakeDamage(25));
+            card = new Card(name.Object, health.Object, spellGroup.Object);
+
+            // When
+            card.TakeDamage(25);
+
+            // Then
+            health.VerifyAll();
         }
     }
 }

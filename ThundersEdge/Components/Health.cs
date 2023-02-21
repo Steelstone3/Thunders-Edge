@@ -11,6 +11,11 @@ namespace ThundersEdge.Components
         }
 
         public byte MaximumHealth { get; }
-        public byte CurrentHealth { get; }
+        public byte CurrentHealth { get; private set; }
+
+        public void TakeDamage(byte damage)
+        {
+            CurrentHealth = (byte)(CurrentHealth - damage);
+        }
     }
 }

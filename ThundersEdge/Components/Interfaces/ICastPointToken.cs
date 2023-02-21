@@ -5,5 +5,6 @@ namespace ThundersEdge.Components.Interfaces
         byte CastingPoints { get; }
         CastingType CastingType { get; }
         IName Name { get; }
+        void CostCastingToken(byte castingCost);
     }
 }

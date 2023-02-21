@@ -15,5 +15,10 @@ namespace ThundersEdge.Entities
         public ICharacterName Name { get; }
         public IHealth Health { get; }
         public ISpellGroup SpellGroup { get; }
+
+        public void TakeDamage(byte damage)
+        {
+            Health.TakeDamage(damage);
+        }
     }
 }

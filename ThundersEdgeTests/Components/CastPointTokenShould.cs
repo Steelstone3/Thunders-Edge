@@ -36,5 +36,15 @@ namespace ThundersEdgeTests.Components
             // Then
             Assert.Equal(10, castPointToken.CastingPoints);
         }
+
+        [Fact(Skip = "Later")]
+        public void CostCastingToken()
+        {
+            // Given
+
+            // When
+
+            // Then
+        }
     }
 }

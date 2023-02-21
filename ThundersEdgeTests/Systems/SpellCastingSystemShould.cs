@@ -31,7 +31,7 @@ namespace ThundersEdgeTests.Systems
             spellCastingPresenter.Setup(scp => scp.SelectAttackingCard(player.Object.Deck)).Returns(player.Object.Deck.Cards.ToList()[0]);
             spellCastingPresenter.Setup(scp => scp.SelectDefendingCard(player.Object.Deck)).Returns(player.Object.Deck.Cards.ToList()[0]);
             spellCastingPresenter.Setup(scp => scp.SelectSpell(player.Object.Deck.Cards.ToList()[0])).Returns(player.Object.Deck.Cards.ToList()[0].SpellGroup.Spells.ToList()[0]);
-            spell.Setup(s => s.CastSpell(card.Object));
+            spell.Setup(s => s.CastSpell(player.Object.PointsTokens, card.Object));
 
             // When
             spellCastingSystem.CastSpell(player.Object, player.Object);
@@ -49,6 +49,10 @@ namespace ThundersEdgeTests.Systems
             card.Setup(c => c.SpellGroup).Returns(spellGroup.Object);
             deck.Setup(d => d.Cards).Returns(new List<ICard>() { card.Object });
             player.Setup(p => p.Deck).Returns(deck.Object);
+
+            Mock<ICastPointToken> castPointToken = new();
+
+            player.Setup(pt => pt.PointsTokens).Returns(new List<ICastPointToken>() { castPointToken.Object });
         }
     }
 }

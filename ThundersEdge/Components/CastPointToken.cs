@@ -13,5 +13,10 @@ namespace ThundersEdge.Components
         public byte CastingPoints { get; } = 10;
         public CastingType CastingType { get; }
         public IName Name { get; }
+
+        public void CostCastingToken(byte castingCost)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

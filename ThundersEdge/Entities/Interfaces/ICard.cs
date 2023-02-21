@@ -7,5 +7,6 @@ namespace ThundersEdge.Entities.Interfaces
         ICharacterName Name { get; }
         IHealth Health { get; }
         ISpellGroup SpellGroup { get; }
+        void TakeDamage(byte damage);
     }
 }

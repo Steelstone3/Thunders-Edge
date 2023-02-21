@@ -7,7 +7,7 @@ namespace ThundersEdge.Presenters
 {
     internal class SpellCastingPresenter : ISpellCastingPresenter
     {
-        private IPresenter presenter;
+        private readonly IPresenter presenter;
 
         public SpellCastingPresenter(IPresenter presenter)
         {
