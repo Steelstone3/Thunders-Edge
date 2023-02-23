@@ -1,6 +1,6 @@
 using ThundersEdge.Components.Interfaces;
 
-namespace ThundersEdge.Components
+namespace ThundersEdge.Components.Character
 {
     public class Name : IName
     {

@@ -1,5 +1,5 @@
 using BubblesDivePlanner.Presenters;
-using ThundersEdge.Components;
+using ThundersEdge.Components.Character;
 using ThundersEdge.Components.Interfaces;
 
 namespace ThundersEdge.Presenters

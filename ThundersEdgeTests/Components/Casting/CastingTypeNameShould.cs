@@ -1,8 +1,8 @@
-using ThundersEdge.Components;
+using ThundersEdge.Components.Casting;
 using ThundersEdge.Components.Interfaces;
 using Xunit;
 
-namespace ThundersEdgeTests.Components
+namespace ThundersEdgeTests.Components.Casting
 {
     public class CastingTypeNameShould
     {

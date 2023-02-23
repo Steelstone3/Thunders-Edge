@@ -1,17 +1,17 @@
+using ThundersEdge.Components.Interfaces;
 using Xunit;
 
 namespace ThundersEdgeTests.Components.SpellGroups.Fire
 {
     public class FireOffensiveSpellGroupShould
     {
-        [Fact(Skip = "Later")]
+        private readonly ISpellGroup fireOffensiveSpellGroup = new FireOffensiveSpellGroup();
+
+        [Fact]
         public void ContainSpells()
         {
-            // Given
-
-            // When
-
             // Then
+            Assert.NotEmpty(fireOffensiveSpellGroup.Spells);
         }
     }
 }

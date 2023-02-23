@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using ThundersEdge.Components.Casting;
+using ThundersEdge.Components.Character;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Entities.Interfaces;
 using ThundersEdge.Systems.Interfaces;

@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using ThundersEdge.Components;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Systems.Interfaces;
 
@@ -7,15 +5,13 @@ namespace ThundersEdge.Systems.Spells
 {
     public class SpellGroupFactory : ISpellGroupFactory
     {
-        private const int SPELL_COUNT = 3;
+        private readonly IRandomSpellGroupSystem randomSpellGroupSystem;
 
-        public SpellGroupFactory()
+        public SpellGroupFactory(IRandomSpellGroupSystem randomSpellGroupSystem)
         {
+            this.randomSpellGroupSystem = randomSpellGroupSystem;
         }
 
-        public ISpellGroup Create()
-        {
-            return new SpellGroup(null);
-        }
+        public ISpellGroup Create() => randomSpellGroupSystem.RandomSpellGroup();
     }
 }

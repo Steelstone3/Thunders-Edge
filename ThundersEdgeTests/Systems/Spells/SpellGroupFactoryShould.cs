@@ -8,22 +8,25 @@ namespace ThundersEdgeTests.Systems.Spells
 {
     public class SpellGroupFactoryShould
     {
+        private readonly Mock<IRandomSpellGroupSystem> randomSpellGroupSystem = new();
         private readonly ISpellGroupFactory spellGroupFactory;
 
         public SpellGroupFactoryShould()
         {
-            spellGroupFactory = new SpellGroupFactory();
+            Mock<ISpellGroup> spellGroup = new();
+            randomSpellGroupSystem.Setup(rsgs => rsgs.RandomSpellGroup()).Returns(spellGroup.Object);
+            spellGroupFactory = new SpellGroupFactory(randomSpellGroupSystem.Object);
         }
 
-        [Fact(Skip = "Implement a spell group, implement a spell groups similar to the random character name system, then return a random spell group")]
+        [Fact]
         public void Create()
         {
             // When
             ISpellGroup spellGroup = spellGroupFactory.Create();
 
             // Then
+            randomSpellGroupSystem.VerifyAll();
             Assert.NotNull(spellGroup);
-            Assert.NotEmpty(spellGroup.Spells);
         }
     }
 }

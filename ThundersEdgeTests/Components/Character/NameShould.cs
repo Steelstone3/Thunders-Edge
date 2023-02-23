@@ -1,8 +1,8 @@
-using ThundersEdge.Components;
+using ThundersEdge.Components.Character;
 using ThundersEdge.Components.Interfaces;
 using Xunit;
 
-namespace ThundersEdgeTests.Components
+namespace ThundersEdgeTests.Components.Character
 {
     public class NameShould
     {

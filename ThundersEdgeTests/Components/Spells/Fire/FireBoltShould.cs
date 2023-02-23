@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Moq;
-using ThundersEdge.Components;
+using ThundersEdge.Components.Casting;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Components.Spells.Fire;
 using ThundersEdge.Entities.Interfaces;

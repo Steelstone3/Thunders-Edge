@@ -1,4 +1,4 @@
-namespace ThundersEdge.Components
+namespace ThundersEdge.Components.Casting
 {
     public enum CastingType
     {

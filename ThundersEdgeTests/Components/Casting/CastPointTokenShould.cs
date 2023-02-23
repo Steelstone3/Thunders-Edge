@@ -1,9 +1,10 @@
 using Moq;
 using ThundersEdge.Components;
+using ThundersEdge.Components.Casting;
 using ThundersEdge.Components.Interfaces;
 using Xunit;
 
-namespace ThundersEdgeTests.Components
+namespace ThundersEdgeTests.Components.Casting
 {
     public class CastPointTokenShould
     {
@@ -37,14 +38,17 @@ namespace ThundersEdgeTests.Components
             Assert.Equal(10, castPointToken.CastingPoints);
         }
 
-        [Fact(Skip = "Later")]
-        public void CostCastingToken()
+        [Theory]
+        [InlineData(2, 8)]
+        [InlineData(10, 0)]
+        [InlineData(11, 0)]
+        public void CostCastingToken(byte castingCost, byte remainingCastingPoints)
         {
-            // Given
-
             // When
+            castPointToken.CostCastingToken(castingCost);
 
             // Then
+            Assert.Equal(remainingCastingPoints, castPointToken.CastingPoints);
         }
     }
 }

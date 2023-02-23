@@ -1,6 +1,6 @@
 using ThundersEdge.Components.Interfaces;
 
-namespace ThundersEdge.Components
+namespace ThundersEdge.Components.Casting
 {
     public class CastPointToken : ICastPointToken
     {
@@ -10,13 +10,13 @@ namespace ThundersEdge.Components
             CastingType = castingType;
         }
 
-        public byte CastingPoints { get; } = 10;
+        public byte CastingPoints { get; private set; } = 10;
         public CastingType CastingType { get; }
         public IName Name { get; }
 
         public void CostCastingToken(byte castingCost)
         {
-            throw new System.NotImplementedException();
+            CastingPoints = castingCost <= CastingPoints ? (byte)(CastingPoints - castingCost) : (byte)0;
         }
     }
 }

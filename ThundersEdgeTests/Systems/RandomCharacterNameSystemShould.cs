@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using ThundersEdge.Components;
+using ThundersEdge.Components.Character;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Systems;
 using ThundersEdge.Systems.Interfaces;
@@ -9,19 +9,19 @@ namespace ThundersEdgeTests.Systems
 {
     public class RandomCharacterNameSystemShould
     {
-        private readonly INames names = new Names();
+        private readonly IAllNames allNames = new AllNames();
         private readonly IRandomCharacterNameSystem randomCharacterNameSystem;
 
         public RandomCharacterNameSystemShould()
         {
-            randomCharacterNameSystem = new RandomCharacterNameSystem();
+            randomCharacterNameSystem = new RandomCharacterNameSystem(allNames);
         }
 
         [Fact]
         public void CreateRandomFirstName()
         {
             // Given
-            IEnumerable<string> firstNames = names.FirstNames;
+            IEnumerable<string> firstNames = allNames.FirstNames;
 
             // When
             string firstName = randomCharacterNameSystem.RandomFirstName();
@@ -34,7 +34,7 @@ namespace ThundersEdgeTests.Systems
         public void CreateRandomSurname()
         {
             // Given
-            IEnumerable<string> surnames = names.Surnames;
+            IEnumerable<string> surnames = allNames.Surnames;
 
             // When
             string surname = randomCharacterNameSystem.RandomSurname();

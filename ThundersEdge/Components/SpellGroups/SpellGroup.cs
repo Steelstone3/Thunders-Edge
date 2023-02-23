@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using ThundersEdge.Components.Interfaces;
 
-namespace ThundersEdge.Components
+namespace ThundersEdge.Components.SpellGroups
 {
     public class SpellGroup : ISpellGroup
     {

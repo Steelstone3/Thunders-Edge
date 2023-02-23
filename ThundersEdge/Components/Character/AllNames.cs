@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using ThundersEdge.Components.Interfaces;
 
-namespace ThundersEdge.Components
+namespace ThundersEdge.Components.Character
 {
-    public class Names : INames
+    public class AllNames : IAllNames
     {
         public IEnumerable<string> FirstNames => new List<string>()
         {

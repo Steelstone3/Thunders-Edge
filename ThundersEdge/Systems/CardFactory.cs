@@ -1,4 +1,4 @@
-using ThundersEdge.Components;
+using ThundersEdge.Components.Character;
 using ThundersEdge.Entities;
 using ThundersEdge.Entities.Interfaces;
 using ThundersEdge.Systems.Interfaces;

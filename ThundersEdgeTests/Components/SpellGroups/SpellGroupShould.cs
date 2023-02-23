@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using Moq;
-using ThundersEdge.Components;
 using ThundersEdge.Components.Interfaces;
+using ThundersEdge.Components.SpellGroups;
 using Xunit;
 
-namespace ThundersEdgeTests.Components
+namespace ThundersEdgeTests.Components.SpellGroups
 {
     public class SpellGroupShould
     {

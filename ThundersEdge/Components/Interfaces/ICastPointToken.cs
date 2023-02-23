@@ -1,3 +1,5 @@
+using ThundersEdge.Components.Casting;
+
 namespace ThundersEdge.Components.Interfaces
 {
     public interface ICastPointToken

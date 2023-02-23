@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Moq;
-using ThundersEdge.Components;
+using ThundersEdge.Components.Casting;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Entities.Interfaces;
 using ThundersEdge.Systems.Interfaces;
@@ -23,8 +23,8 @@ namespace ThundersEdgeTests.Systems.Spells
             spell.Setup(s => s.Damage).Returns(10);
             spell.Setup(s => s.CastingCost).Returns(2);
             spell.Setup(s => s.CastElement).Returns(CastingType.Fire);
-            
-                        castPointToken.Setup(cpt => cpt.CostCastingToken(spell.Object.CastingCost));
+
+            castPointToken.Setup(cpt => cpt.CostCastingToken(spell.Object.CastingCost));
             castPointToken.Setup(cpt => cpt.CastingType).Returns(CastingType.Fire);
 
             damagingSpellCastSystem = new DamagingSpellCastSystem();
@@ -47,7 +47,6 @@ namespace ThundersEdgeTests.Systems.Spells
             castPointToken.VerifyAll();
             card.VerifyAll();
         }
-
 
         [Fact]
         public void RanOutOfTokensToCastSpell()
