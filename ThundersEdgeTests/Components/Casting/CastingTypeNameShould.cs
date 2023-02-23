@@ -6,10 +6,10 @@ namespace ThundersEdgeTests.Components.Casting
 {
     public class CastingTypeNameShould
     {
-        readonly ICastingTypeName castingTypeName = new CastingTypeName();
+        private readonly ICastingTypeName castingTypeName = new CastingTypeName();
 
         [Fact]
-        public void TestName()
+        public void ContainTypeNames()
         {
             // Then
             Assert.Equal("Conventional ⚔", castingTypeName.Convensional);

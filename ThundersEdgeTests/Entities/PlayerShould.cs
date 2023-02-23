@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Moq;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Entities;
@@ -11,7 +10,7 @@ namespace ThundersEdgeTests.Models
     {
         private readonly Mock<IName> name = new();
         private readonly Mock<IDeck> deck = new();
-        private readonly Mock<IEnumerable<ICastPointToken>> pointsTokens = new();
+        private readonly Mock<IAllCastPointTokens> pointsTokens = new();
         private readonly IPlayer player;
 
         public PlayerShould()

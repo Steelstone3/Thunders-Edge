@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+using ThundersEdge.Components.Casting;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Entities.Interfaces;
 using ThundersEdge.Systems.Interfaces;
@@ -8,13 +7,13 @@ namespace ThundersEdge.Systems.Spells
 {
     public class DamagingSpellCastSystem : IDamagingSpellCastSystem
     {
-        public void CastSpell(ISpell spell, IEnumerable<ICastPointToken> castPointTokens, ICard defendingCard)
+        public void CastSpell(ISpell spell, IAllCastPointTokens castPointTokens, ICard defendingCard)
         {
-           ICastPointToken pointsToken = castPointTokens.SingleOrDefault(pt => pt.CastingType == spell.CastElement);
+            ICastPointToken castPointToken = castPointTokens.GetCastPointTokenOfType(spell.CastElement);
 
-            if (pointsToken.CastingPoints >= spell.CastingCost)
+            if (castPointToken.CastingPoints >= spell.CastingCost)
             {
-                pointsToken.CostCastingToken(spell.CastingCost);
+                castPointToken.CostCastingToken(spell.CastingCost);
                 defendingCard.TakeDamage(spell.Damage);
             }
         }

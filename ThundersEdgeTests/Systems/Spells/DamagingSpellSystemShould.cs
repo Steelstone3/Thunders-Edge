@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using Moq;
 using ThundersEdge.Components.Casting;
 using ThundersEdge.Components.Interfaces;
@@ -12,7 +10,7 @@ namespace ThundersEdgeTests.Systems.Spells
 {
     public class DamagingSpellSystemShould
     {
-        private List<ICastPointToken> castPointTokens;
+        private readonly Mock<IAllCastPointTokens> allCastPointTokens = new();
         private readonly Mock<ICastPointToken> castPointToken = new();
         private readonly Mock<ICard> card = new();
         private readonly Mock<ISpell> spell = new();
@@ -20,12 +18,8 @@ namespace ThundersEdgeTests.Systems.Spells
 
         public DamagingSpellSystemShould()
         {
-            spell.Setup(s => s.Damage).Returns(10);
-            spell.Setup(s => s.CastingCost).Returns(2);
             spell.Setup(s => s.CastElement).Returns(CastingType.Fire);
-
-            castPointToken.Setup(cpt => cpt.CostCastingToken(spell.Object.CastingCost));
-            castPointToken.Setup(cpt => cpt.CastingType).Returns(CastingType.Fire);
+            allCastPointTokens.Setup(acpt => acpt.GetCastPointTokenOfType(CastingType.Fire)).Returns(castPointToken.Object);
 
             damagingSpellCastSystem = new DamagingSpellCastSystem();
         }
@@ -33,18 +27,21 @@ namespace ThundersEdgeTests.Systems.Spells
         [Fact]
         public void CastASpell()
         {
-            // Given
+            // // Given
             const int CURRENT_CASTING_POINTS = 2;
+            const int DAMAGE = 25;
+            spell.Setup(s => s.CastingCost).Returns(CURRENT_CASTING_POINTS);
+            spell.Setup(s => s.Damage).Returns(DAMAGE);
             castPointToken.Setup(cpt => cpt.CastingPoints).Returns(CURRENT_CASTING_POINTS);
-            castPointTokens = new() { castPointToken.Object };
-            Mock<ICard> card = new();
+            castPointToken.Setup(cpt => cpt.CostCastingToken(spell.Object.CastingCost));
             card.Setup(c => c.TakeDamage(spell.Object.Damage));
 
             // When
-            damagingSpellCastSystem.CastSpell(spell.Object, castPointTokens, card.Object);
+            damagingSpellCastSystem.CastSpell(spell.Object, allCastPointTokens.Object, card.Object);
 
             // Then
-            castPointToken.VerifyAll();
+            allCastPointTokens.Verify(acpt => acpt.GetCastPointTokenOfType(CastingType.Fire));
+            castPointToken.Verify(cpt => cpt.CostCastingToken(CURRENT_CASTING_POINTS));
             card.VerifyAll();
         }
 
@@ -52,16 +49,21 @@ namespace ThundersEdgeTests.Systems.Spells
         public void RanOutOfTokensToCastSpell()
         {
             // Given
+            const int SPELL_CASTING_POINTS = 2;
             const int CURRENT_CASTING_POINTS = 1;
+            const int DAMAGE = 25;
+            spell.Setup(s => s.CastingCost).Returns(SPELL_CASTING_POINTS);
+            spell.Setup(s => s.Damage).Returns(DAMAGE);
             castPointToken.Setup(cpt => cpt.CastingPoints).Returns(CURRENT_CASTING_POINTS);
-            castPointTokens = new() { castPointToken.Object };
+            castPointToken.Setup(cpt => cpt.CostCastingToken(spell.Object.CastingCost));
             card.Setup(c => c.TakeDamage(spell.Object.Damage));
 
             // When
-            damagingSpellCastSystem.CastSpell(spell.Object, castPointTokens, card.Object);
+            damagingSpellCastSystem.CastSpell(spell.Object, allCastPointTokens.Object, card.Object);
 
             // Then
-            castPointToken.Verify(cpt => cpt.CostCastingToken(spell.Object.CastingCost), Times.Never);
+            allCastPointTokens.Verify(acpt => acpt.GetCastPointTokenOfType(CastingType.Fire));
+            castPointToken.Verify(cpt => cpt.CostCastingToken(CURRENT_CASTING_POINTS), Times.Never);
             card.Verify(c => c.TakeDamage(spell.Object.Damage), Times.Never);
         }
     }

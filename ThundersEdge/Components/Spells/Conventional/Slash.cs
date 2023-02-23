@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using ThundersEdge.Components.Casting;
 using ThundersEdge.Components.Character;
 using ThundersEdge.Components.Interfaces;
@@ -15,7 +13,7 @@ namespace ThundersEdge.Components.Spells.Conventional
         public byte Damage => 15;
         public byte CastingCost => 1;
 
-        public void CastSpell(IDamagingSpellCastSystem damagingSpellCastSystem, IEnumerable<ICastPointToken> castPointTokens, ICard defendingCard)
+        public void CastSpell(IDamagingSpellCastSystem damagingSpellCastSystem, IAllCastPointTokens castPointTokens, ICard defendingCard)
         {
             damagingSpellCastSystem.CastSpell(this, castPointTokens, defendingCard);
         }

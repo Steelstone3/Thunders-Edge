@@ -1,5 +1,3 @@
-using Moq;
-using ThundersEdge.Components;
 using ThundersEdge.Components.Casting;
 using ThundersEdge.Components.Interfaces;
 using Xunit;
@@ -8,13 +6,12 @@ namespace ThundersEdgeTests.Components.Casting
 {
     public class CastPointTokenShould
     {
-        private readonly Mock<IName> name = new();
         private readonly CastingType castingType = CastingType.Air;
         private readonly ICastPointToken castPointToken;
 
         public CastPointTokenShould()
         {
-            castPointToken = new CastPointToken(name.Object, castingType);
+            castPointToken = new CastPointToken(castingType);
         }
 
         [Fact]
@@ -24,11 +21,21 @@ namespace ThundersEdgeTests.Components.Casting
             Assert.Equal(CastingType.Air, castPointToken.CastingType);
         }
 
-        [Fact]
-        public void ContainName()
+        [Theory]
+        [InlineData(CastingType.Conventional, "Conventional ⚔")]
+        [InlineData(CastingType.Life, "Life ❤")]
+        [InlineData(CastingType.Air, "Air 🜁")]
+        [InlineData(CastingType.Water, "Water 🜄")]
+        [InlineData(CastingType.Earth, "Earth 🜃")]
+        [InlineData(CastingType.Fire, "Fire 🜂")]
+        public void ContainName(CastingType castingType, string name)
         {
+            // Given
+            ICastPointToken castPointToken = new CastPointToken(castingType);
+
             // Then
             Assert.NotNull(castPointToken.Name);
+            Assert.Equal(name, castPointToken.Name.GenericName);
         }
 
         [Fact]

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using ThundersEdge.Components;
+using ThundersEdge.Components.Casting;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Entities.Interfaces;
 
@@ -7,7 +8,7 @@ namespace ThundersEdge.Entities
 {
     public class Player : IPlayer
     {
-        public Player(IName name, IDeck deck, IEnumerable<ICastPointToken> pointsDeck)
+        public Player(IName name, IDeck deck, IAllCastPointTokens pointsDeck)
         {
             Name = name;
             PointsTokens = pointsDeck;
@@ -15,7 +16,7 @@ namespace ThundersEdge.Entities
         }
 
         public IDeck Deck { get; }
-        public IEnumerable<ICastPointToken> PointsTokens { get; }
+        public IAllCastPointTokens PointsTokens { get; }
         public IName Name { get; }
     }
 }

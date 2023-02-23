@@ -13,7 +13,7 @@ namespace ThundersEdgeTests.Systems
     {
         private readonly Mock<ICharacterPresenter> characterPresenter = new();
         private readonly Mock<IDeckFactory> deckFactory = new();
-        private readonly Mock<ISpellTokenFactory> spellTokenFactory = new();
+        private readonly Mock<IAllSpellTokenFactory> spellTokenFactory = new();
         private readonly IPlayerSetupFactory playerSetupFactory;
 
         public PlayerSetupFactoryShould()
@@ -27,7 +27,7 @@ namespace ThundersEdgeTests.Systems
             // Given
             characterPresenter.Setup(cp => cp.AskCharacterName());
             deckFactory.Setup(df => df.Create()).Returns(new Mock<IDeck>().Object);
-            spellTokenFactory.Setup(pdf => pdf.Create()).Returns(new Mock<IEnumerable<ICastPointToken>>().Object);
+            spellTokenFactory.Setup(pdf => pdf.Create()).Returns(new Mock<IAllCastPointTokens>().Object);
 
             // When
             IPlayer player = playerSetupFactory.Create();

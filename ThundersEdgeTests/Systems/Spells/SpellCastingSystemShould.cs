@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using Moq;
 using ThundersEdge.Components.Interfaces;
@@ -30,8 +29,8 @@ namespace ThundersEdgeTests.Systems.Spells
         public void CastASpell()
         {
             // Given
-            spellCastingPresenter.Setup(scp => scp.SelectAttackingCard(player.Object.Deck)).Returns(player.Object.Deck.Cards.ToList()[0]);
-            spellCastingPresenter.Setup(scp => scp.SelectDefendingCard(player.Object.Deck)).Returns(player.Object.Deck.Cards.ToList()[0]);
+            spellCastingPresenter.Setup(scp => scp.SelectAttackingCard(player.Object.Name.GenericName, player.Object.Deck)).Returns(player.Object.Deck.Cards.ToList()[0]);
+            spellCastingPresenter.Setup(scp => scp.SelectDefendingCard(player.Object.Name.GenericName, player.Object.Deck)).Returns(player.Object.Deck.Cards.ToList()[0]);
             spellCastingPresenter.Setup(scp => scp.SelectSpell(player.Object.Deck.Cards.ToList()[0])).Returns(player.Object.Deck.Cards.ToList()[0].SpellGroup.Spells.ToList()[0]);
             spell.Setup(s => s.CastSpell(damagingSpellCastSystem.Object, player.Object.PointsTokens, card.Object));
 
@@ -44,17 +43,20 @@ namespace ThundersEdgeTests.Systems.Spells
 
         private void SetupPlayerStub()
         {
+            Mock<IName> name = new();
             Mock<IDeck> deck = new();
             Mock<ISpellGroup> spellGroup = new();
 
+            name.Setup(n => n.GenericName).Returns("Bob");
             spellGroup.Setup(sg => sg.Spells).Returns(new List<ISpell>() { spell.Object });
             card.Setup(c => c.SpellGroup).Returns(spellGroup.Object);
             deck.Setup(d => d.Cards).Returns(new List<ICard>() { card.Object });
             player.Setup(p => p.Deck).Returns(deck.Object);
+            player.Setup(p => p.Name).Returns(name.Object);
 
-            Mock<ICastPointToken> castPointToken = new();
+            Mock<IAllCastPointTokens> allCastPointTokens = new();
 
-            player.Setup(pt => pt.PointsTokens).Returns(new List<ICastPointToken>() { castPointToken.Object });
+            player.Setup(pt => pt.PointsTokens).Returns(allCastPointTokens.Object);
         }
     }
 }

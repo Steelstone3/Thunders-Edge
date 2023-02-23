@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Moq;
 using ThundersEdge.Components.Casting;
 using ThundersEdge.Components.Interfaces;
@@ -12,21 +11,21 @@ namespace ThundersEdgeTests.Components.Spells.Fire
     public class FireBoltShould
     {
         private readonly Mock<IDamagingSpellCastSystem> damagingSpellCastSystem = new();
-        private readonly Mock<IEnumerable<ICastPointToken>> castPointTokens = new();
+        private readonly Mock<IAllCastPointTokens> allCastPointTokens = new();
         private readonly Mock<ICard> defendingCard = new();
         private readonly ISpell spell;
 
         public FireBoltShould()
         {
             spell = new FireBolt();
-            damagingSpellCastSystem.Setup(dscs => dscs.CastSpell(spell, castPointTokens.Object, defendingCard.Object));
+            damagingSpellCastSystem.Setup(dscs => dscs.CastSpell(spell, allCastPointTokens.Object, defendingCard.Object));
         }
 
         [Fact]
         public void CastSpell()
         {
             // When
-            spell.CastSpell(damagingSpellCastSystem.Object, castPointTokens.Object, defendingCard.Object);
+            spell.CastSpell(damagingSpellCastSystem.Object, allCastPointTokens.Object, defendingCard.Object);
 
             // Then
             damagingSpellCastSystem.VerifyAll();

@@ -12,21 +12,21 @@ namespace ThundersEdgeTests.Components.Spells.Conventional
     public class SlashShould
     {
         private readonly Mock<IDamagingSpellCastSystem> damagingSpellCastSystem = new();
-        private readonly Mock<IEnumerable<ICastPointToken>> castPointTokens = new();
+        private readonly Mock<IAllCastPointTokens> allCastPointTokens = new();
         private readonly Mock<ICard> defendingCard = new();
         private readonly ISpell spell;
 
         public SlashShould()
         {
             spell = new Slash();
-            damagingSpellCastSystem.Setup(dscs => dscs.CastSpell(spell, castPointTokens.Object, defendingCard.Object));
+            damagingSpellCastSystem.Setup(dscs => dscs.CastSpell(spell, allCastPointTokens.Object, defendingCard.Object));
         }
 
         [Fact]
         public void CastSpell()
         {
             // When
-            spell.CastSpell(damagingSpellCastSystem.Object, castPointTokens.Object, defendingCard.Object);
+            spell.CastSpell(damagingSpellCastSystem.Object, allCastPointTokens.Object, defendingCard.Object);
 
             // Then
             damagingSpellCastSystem.VerifyAll();

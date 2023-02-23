@@ -5,7 +5,7 @@ using ThundersEdge.Presenters.Interfaces;
 
 namespace ThundersEdge.Presenters
 {
-    internal class SpellCastingPresenter : ISpellCastingPresenter
+    public class SpellCastingPresenter : ISpellCastingPresenter
     {
         private readonly IPresenter presenter;
 
@@ -14,19 +14,18 @@ namespace ThundersEdge.Presenters
             this.presenter = presenter;
         }
 
-        public ICard SelectAttackingCard(IDeck deck)
+        public ICard SelectAttackingCard(string playerName, IDeck deck)
         {
-            throw new System.NotImplementedException();
+            presenter.Print($"{playerName}'s Turn");
+            return presenter.GetCardFromDeck("Select Casting Card:", deck);
         }
 
-        public ICard SelectDefendingCard(IDeck deck)
+        public ICard SelectDefendingCard(string playerName, IDeck deck)
         {
-            throw new System.NotImplementedException();
+            presenter.Print($"{playerName}'s Turn");
+            return presenter.GetCardFromDeck("Select Target Card:", deck);
         }
 
-        public ISpell SelectSpell(ICard card)
-        {
-            throw new System.NotImplementedException();
-        }
+        public ISpell SelectSpell(ICard card) => presenter.GetSpellFromCard(card);
     }
 }

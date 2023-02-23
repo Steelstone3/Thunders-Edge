@@ -6,6 +6,6 @@ namespace ThundersEdge.Systems.Interfaces
 {
     public interface IDamagingSpellCastSystem
     {
-        void CastSpell(ISpell spell, IEnumerable<ICastPointToken> castPointTokens, ICard defendingCard);
+        void CastSpell(ISpell spell, IAllCastPointTokens castPointTokens, ICard defendingCard);
     }
 }

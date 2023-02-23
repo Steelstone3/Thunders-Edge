@@ -9,9 +9,9 @@ namespace ThundersEdge.Systems
     {
         private readonly ICharacterPresenter characterPresenter;
         private readonly IDeckFactory deckFactory;
-        private readonly ISpellTokenFactory spellTokenFactory;
+        private readonly IAllSpellTokenFactory spellTokenFactory;
 
-        public PlayerSetupFactory(ICharacterPresenter characterPresenter, IDeckFactory deckFactory, ISpellTokenFactory spellTokenFactory)
+        public PlayerSetupFactory(ICharacterPresenter characterPresenter, IDeckFactory deckFactory, IAllSpellTokenFactory spellTokenFactory)
         {
             this.characterPresenter = characterPresenter;
             this.deckFactory = deckFactory;

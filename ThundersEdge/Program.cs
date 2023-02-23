@@ -1,6 +1,5 @@
 using BubblesDivePlanner.Presenters;
 using ThundersEdge.Components.Character;
-using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Components.SpellGroups;
 using ThundersEdge.Presenters;
 using ThundersEdge.Presenters.Interfaces;
@@ -24,10 +23,11 @@ namespace ThundersEdge
             ISpellGroupFactory spellGroupFactory = new SpellGroupFactory(randomSpellGroupSystem);
             ICardFactory cardFactory = new CardFactory(characterNameFactory, spellGroupFactory);
             IDeckFactory deckFactory = new DeckFactory(cardFactory);
-            ISpellTokenFactory pointsDeckFactory = new SpellTokenFactory();
+            IAllSpellTokenFactory pointsDeckFactory = new AllSpellTokenFactory();
             IPlayerSetupFactory playerSetupFactory = new PlayerSetupFactory(characterPresenter, deckFactory, pointsDeckFactory);
             IGameSetupFactory gameSetupFactory = new GameSetupFactory(playerSetupFactory);
-            ISpellCastingSystem spellCastingSystem = new SpellCastingSystem(spellCastingPresenter);
+            IDamagingSpellCastSystem damagingSpellCastSystem = new DamagingSpellCastSystem();
+            ISpellCastingSystem spellCastingSystem = new SpellCastingSystem(spellCastingPresenter, damagingSpellCastSystem);
             IGameService gameService = new GameService(gameSetupFactory, spellCastingSystem);
 
             gameService.Run();

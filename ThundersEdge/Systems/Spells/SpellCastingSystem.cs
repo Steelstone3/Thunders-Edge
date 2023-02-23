@@ -10,11 +10,6 @@ namespace ThundersEdge.Systems.Spells
         private readonly ISpellCastingPresenter spellCastingPresenter;
         private readonly IDamagingSpellCastSystem damagingSpellCastSystem;
 
-        public SpellCastingSystem(ISpellCastingPresenter spellCastingPresenter)
-        {
-            this.spellCastingPresenter = spellCastingPresenter;
-        }
-
         public SpellCastingSystem(ISpellCastingPresenter spellCastingPresenter, IDamagingSpellCastSystem damagingSpellCastSystem)
         {
             this.spellCastingPresenter = spellCastingPresenter;
@@ -23,11 +18,11 @@ namespace ThundersEdge.Systems.Spells
 
         public void CastSpell(IPlayer attackingPlayer, IPlayer defendingPlayer)
         {
-            ICard attackingCard = spellCastingPresenter.SelectAttackingCard(attackingPlayer.Deck);
-            ICard defendingCard = spellCastingPresenter.SelectDefendingCard(defendingPlayer.Deck);
+            ICard attackingCard = spellCastingPresenter.SelectAttackingCard(attackingPlayer.Name.GenericName, attackingPlayer.Deck);
+            ICard defendingCard = spellCastingPresenter.SelectDefendingCard(attackingPlayer.Name.GenericName, defendingPlayer.Deck);
             ISpell spell = spellCastingPresenter.SelectSpell(attackingCard);
 
-            spell.CastSpell( damagingSpellCastSystem, attackingPlayer.PointsTokens, defendingCard);
+            spell.CastSpell(damagingSpellCastSystem, attackingPlayer.PointsTokens, defendingCard);
         }
     }
 }

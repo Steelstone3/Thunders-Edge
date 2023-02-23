@@ -1,13 +1,14 @@
+using ThundersEdge.Components.Character;
 using ThundersEdge.Components.Interfaces;
 
 namespace ThundersEdge.Components.Casting
 {
     public class CastPointToken : ICastPointToken
     {
-        public CastPointToken(IName name, CastingType castingType)
+        public CastPointToken(CastingType castingType)
         {
-            Name = name;
             CastingType = castingType;
+            Name = AssignName();
         }
 
         public byte CastingPoints { get; private set; } = 10;
@@ -17,6 +18,22 @@ namespace ThundersEdge.Components.Casting
         public void CostCastingToken(byte castingCost)
         {
             CastingPoints = castingCost <= CastingPoints ? (byte)(CastingPoints - castingCost) : (byte)0;
+        }
+
+        private IName AssignName()
+        {
+            ICastingTypeName castingTypeName = new CastingTypeName();
+
+            return CastingType switch
+            {
+                CastingType.Conventional => new Name(castingTypeName.Convensional),
+                CastingType.Life => new Name(castingTypeName.Life),
+                CastingType.Air => new Name(castingTypeName.Air),
+                CastingType.Water => new Name(castingTypeName.Water),
+                CastingType.Earth => new Name(castingTypeName.Earth),
+                CastingType.Fire => new Name(castingTypeName.Fire),
+                _ => null,
+            };
         }
     }
 }

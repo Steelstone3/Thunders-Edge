@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Systems.Interfaces;
 using ThundersEdge.Systems.Spells;
@@ -8,21 +7,21 @@ namespace ThundersEdgeTests.Systems.Spells
 {
     public class SpellTokenFactoryShould
     {
-        private readonly ISpellTokenFactory spellTokenFactory;
+        private readonly IAllSpellTokenFactory allSpellTokenFactory;
 
         public SpellTokenFactoryShould()
         {
-            spellTokenFactory = new SpellTokenFactory();
+            allSpellTokenFactory = new AllSpellTokenFactory();
         }
 
         [Fact]
         public void Create()
         {
             // When
-            IEnumerable<ICastPointToken> spellTokens = spellTokenFactory.Create();
+            IAllCastPointTokens spellTokens = allSpellTokenFactory.Create();
 
             // Then
-            Assert.NotEmpty(spellTokens);
+            Assert.NotNull(spellTokens);
         }
     }
 }
