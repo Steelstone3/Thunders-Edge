@@ -1,4 +1,5 @@
 using Moq;
+using Spectre.Console;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Presenters;
 using ThundersEdge.Presenters.Interfaces;
@@ -36,6 +37,23 @@ namespace ThundersEdgeTests.Presenters
             // When
             deckPresenter.PrintCardTakingDamage(DAMAGE, characterName.Object, health.Object);
 
+            // Then
+            presenter.VerifyAll();
+        }
+
+        [Fact]
+        public void PrintRemainingCastingToken()
+        {
+            // Given
+            const string SPELL_CASTING_TYPE_NAME = "Fire";
+            const int REMAINING_CASTING_POINTS = 10;
+            Mock<IName> name = new();
+            name.Setup(n => n.GenericName).Returns(SPELL_CASTING_TYPE_NAME);
+            presenter.Setup(p => p.Print($"Casting Type: {SPELL_CASTING_TYPE_NAME}\nCasting Points Remaining: {REMAINING_CASTING_POINTS}"));
+
+            // When
+            deckPresenter.PrintRemainingCastingToken(name.Object, REMAINING_CASTING_POINTS);
+        
             // Then
             presenter.VerifyAll();
         }

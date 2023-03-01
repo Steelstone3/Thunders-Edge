@@ -1,39 +1,50 @@
 using ThundersEdge.Assests.Interfaces;
 using ThundersEdge.Components.Interfaces;
+using ThundersEdge.Presenters.Interfaces;
 
 namespace ThundersEdge.Components.Casting
 {
     public class AllCastPointTokens : IAllCastPointTokens
     {
+        public AllCastPointTokens(IPresenter presenter)
+        {
+            ConventionalCastPointToken = new CastPointToken(presenter, CastingType.Conventional);
+            LifeCastPointToken = new CastPointToken(presenter, CastingType.Life);
+            AirCastPointToken = new CastPointToken(presenter, CastingType.Air);
+            WaterCastPointToken = new CastPointToken(presenter, CastingType.Water);
+            EarthCastPointToken = new CastPointToken(presenter, CastingType.Earth);
+            FireCastPointToken = new CastPointToken(presenter, CastingType.Fire);
+        }
+
         public ICastPointToken ConventionalCastPointToken
         {
             get;
-        } = new CastPointToken(CastingType.Conventional);
+        }
 
         public ICastPointToken LifeCastPointToken
         {
             get;
-        } = new CastPointToken(CastingType.Life);
+        }
 
         public ICastPointToken AirCastPointToken
         {
             get;
-        } = new CastPointToken(CastingType.Air);
+        }
 
         public ICastPointToken WaterCastPointToken
         {
             get;
-        } = new CastPointToken(CastingType.Water);
+        }
 
         public ICastPointToken EarthCastPointToken
         {
             get;
-        } = new CastPointToken(CastingType.Earth);
+        }
 
         public ICastPointToken FireCastPointToken
         {
             get;
-        } = new CastPointToken(CastingType.Fire);
+        }
 
         public ICastPointToken GetCastPointTokenOfType(CastingType castingType)
         {

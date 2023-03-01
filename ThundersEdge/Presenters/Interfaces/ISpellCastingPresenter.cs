@@ -5,8 +5,9 @@ namespace ThundersEdge.Presenters.Interfaces
 {
     public interface ISpellCastingPresenter
     {
-        ICard SelectAttackingCard(string playerName, IDeck deck);
-        ICard SelectDefendingCard(string playerName, IDeck deck);
+        void PrintPlayerTurn(IName playerName);
+        ICard SelectAttackingCard(IDeck deck);
+        ICard SelectDefendingCard(IDeck deck);
         ISpell SelectSpell(ICard card);
     }
 }

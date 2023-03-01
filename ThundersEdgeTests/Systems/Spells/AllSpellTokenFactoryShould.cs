@@ -1,17 +1,20 @@
+using Moq;
 using ThundersEdge.Assests.Interfaces;
+using ThundersEdge.Presenters.Interfaces;
 using ThundersEdge.Systems.Interfaces;
 using ThundersEdge.Systems.Spells;
 using Xunit;
 
 namespace ThundersEdgeTests.Systems.Spells
 {
-    public class SpellTokenFactoryShould
+    public class AllSpellTokenFactoryShould
     {
         private readonly IAllSpellTokenFactory allSpellTokenFactory;
 
-        public SpellTokenFactoryShould()
+        public AllSpellTokenFactoryShould()
         {
-            allSpellTokenFactory = new AllSpellTokenFactory();
+            Mock<IPresenter> presenter = new();
+            allSpellTokenFactory = new AllSpellTokenFactory(presenter.Object);
         }
 
         [Fact]

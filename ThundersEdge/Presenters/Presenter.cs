@@ -28,7 +28,7 @@ namespace ThundersEdge.Presenters
             return AnsiConsole.Ask<string>(message);
         }
 
-        public ICard GetCardFromDeck(string message, IDeck deck)
+        public ICard GetCardFromDeck(string selectionMessage, string selectedMessage, IDeck deck)
         {
             SelectionPrompt<ICard> selectionPrompt = new()
             {
@@ -36,10 +36,10 @@ namespace ThundersEdge.Presenters
             };
 
             ICard selection = AnsiConsole.Prompt(selectionPrompt
-            .Title(message)
+            .Title(selectionMessage)
             .AddChoices(deck.Cards));
 
-            Print($"Card selected: {selection.Name.FirstName} {selection.Name.Surname}");
+            Print($"{selectedMessage} {selection.Name.FirstName} {selection.Name.Surname}");
 
             return selection;
         }
@@ -55,6 +55,7 @@ namespace ThundersEdge.Presenters
             .Title("Select Spell:")
             .AddChoices(card.SpellGroup.Spells));
 
+            // TODO can make this separate
             Print($"Spell selected: {selection.Name.GenericName}");
 
             return selection;

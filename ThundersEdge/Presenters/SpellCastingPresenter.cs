@@ -13,16 +13,19 @@ namespace ThundersEdge.Presenters
             this.presenter = presenter;
         }
 
-        public ICard SelectAttackingCard(string playerName, IDeck deck)
+        public void PrintPlayerTurn(IName playerName)
         {
-            presenter.Print($"{playerName}'s Turn");
-            return presenter.GetCardFromDeck("Select Casting Card:", deck);
+            presenter.Print($"\n\n\n{playerName.GenericName}'s Turn\n");
         }
 
-        public ICard SelectDefendingCard(string playerName, IDeck deck)
+        public ICard SelectAttackingCard(IDeck deck)
         {
-            presenter.Print($"{playerName}'s Turn");
-            return presenter.GetCardFromDeck("Select Target Card:", deck);
+            return presenter.GetCardFromDeck("Select Casting Card:", "Casting Card Selected:", deck);
+        }
+
+        public ICard SelectDefendingCard(IDeck deck)
+        {
+            return presenter.GetCardFromDeck("Select Target Card:", "Target Card Selected:", deck);
         }
 
         public ISpell SelectSpell(ICard card) => presenter.GetSpellFromCard(card);

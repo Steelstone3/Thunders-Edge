@@ -1,17 +1,20 @@
+using Moq;
 using ThundersEdge.Components.Casting;
 using ThundersEdge.Components.Interfaces;
+using ThundersEdge.Presenters.Interfaces;
 using Xunit;
 
 namespace ThundersEdgeTests.Components.Casting
 {
     public class CastPointTokenShould
     {
+        private readonly Mock<IPresenter> presenter = new();
         private readonly CastingType castingType = CastingType.Air;
         private readonly ICastPointToken castPointToken;
 
         public CastPointTokenShould()
         {
-            castPointToken = new CastPointToken(castingType);
+            castPointToken = new CastPointToken(presenter.Object, castingType);
         }
 
         [Fact]
@@ -31,7 +34,7 @@ namespace ThundersEdgeTests.Components.Casting
         public void ContainName(CastingType castingType, string name)
         {
             // Given
-            ICastPointToken castPointToken = new CastPointToken(castingType);
+            ICastPointToken castPointToken = new CastPointToken(presenter.Object, castingType);
 
             // Then
             Assert.NotNull(castPointToken.Name);
@@ -51,6 +54,12 @@ namespace ThundersEdgeTests.Components.Casting
         [InlineData(11, 0)]
         public void CostCastingToken(byte castingCost, byte remainingCastingPoints)
         {
+            // Given
+            Mock<IName> name = new();
+            Mock<IDeckPresenter> deckPresenter=new();
+            deckPresenter.Setup(dp =>dp.PrintRemainingCastingToken(name.Object, remainingCastingPoints));
+            presenter.Setup(p => p.DeckPresenter).Returns(deckPresenter.Object);
+
             // When
             castPointToken.CostCastingToken(castingCost);
 

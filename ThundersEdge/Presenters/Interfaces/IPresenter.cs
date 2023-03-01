@@ -11,7 +11,7 @@ namespace ThundersEdge.Presenters.Interfaces
         ICharacterPresenter CharacterPresenter { get; }
         void Print(string message);
         string GetString(string message);
-        ICard GetCardFromDeck(string message, IDeck deck);
+        ICard GetCardFromDeck(string selectionMessage, string selectedMessage, IDeck deck);
         ISpell GetSpellFromCard(ICard card);
     }
 }

@@ -1,13 +1,21 @@
+using Moq;
 using ThundersEdge.Assests.Interfaces;
 using ThundersEdge.Components.Casting;
 using ThundersEdge.Components.Interfaces;
+using ThundersEdge.Presenters.Interfaces;
 using Xunit;
 
 namespace ThundersEdgeTests.Assests
 {
     public class AllCastPointTokensShould
     {
-        private readonly IAllCastPointTokens allCastPointTokens = new AllCastPointTokens();
+        Mock<IPresenter> presenter = new();
+        private readonly IAllCastPointTokens allCastPointTokens;
+        
+        public AllCastPointTokensShould()
+        {
+            allCastPointTokens = new AllCastPointTokens(presenter.Object);
+        }
 
         [Fact]
         public void ContainsConventionalCastPointToken()

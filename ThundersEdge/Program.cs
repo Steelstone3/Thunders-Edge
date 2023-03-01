@@ -13,20 +13,32 @@ namespace ThundersEdge
         public static void Main()
         {
             IPresenter presenter = new Presenter();
+
             IRandomCharacterNameSystem randomCharacterNameSystem = new RandomCharacterNameSystem(new AllNames());
-            ICharacterNameFactory characterNameFactory = new CharacterNameFactory(randomCharacterNameSystem);
             IRandomSpellGroupSystem randomSpellGroupSystem = new RandomSpellGroupSystem(new AllSpellGroups());
+
+            IGameSetupFactory gameSetupFactory = CreateGame(presenter, randomCharacterNameSystem, randomSpellGroupSystem);
+
+            IDamagingSpellCastSystem damagingSpellCastSystem = new DamagingSpellCastSystem();
+            ISpellCastingSystem spellCastingSystem = new SpellCastingSystem(presenter, damagingSpellCastSystem);
+            ICombatSystem combatSystem = new CombatSystem(spellCastingSystem);
+
+            IGameService gameService = new GameService(gameSetupFactory, combatSystem);
+            gameService.Run();
+        }
+
+        private static IGameSetupFactory CreateGame(IPresenter presenter, IRandomCharacterNameSystem randomCharacterNameSystem, IRandomSpellGroupSystem randomSpellGroupSystem)
+        {
+            ICharacterNameFactory characterNameFactory = new CharacterNameFactory(randomCharacterNameSystem);
             ISpellGroupFactory spellGroupFactory = new SpellGroupFactory(randomSpellGroupSystem);
             ICardFactory cardFactory = new CardFactory(presenter, characterNameFactory, spellGroupFactory);
             IDeckFactory deckFactory = new DeckFactory(cardFactory);
-            IAllSpellTokenFactory pointsDeckFactory = new AllSpellTokenFactory();
-            IPlayerSetupFactory playerSetupFactory = new PlayerSetupFactory(presenter, deckFactory, pointsDeckFactory);
-            IGameSetupFactory gameSetupFactory = new GameSetupFactory(playerSetupFactory);
-            IDamagingSpellCastSystem damagingSpellCastSystem = new DamagingSpellCastSystem();
-            ISpellCastingSystem spellCastingSystem = new SpellCastingSystem(presenter, damagingSpellCastSystem);
-            IGameService gameService = new GameService(gameSetupFactory, spellCastingSystem);
 
-            gameService.Run();
+            IAllSpellTokenFactory pointsDeckFactory = new AllSpellTokenFactory(presenter);
+
+            IPlayerSetupFactory playerSetupFactory = new PlayerSetupFactory(presenter, deckFactory, pointsDeckFactory);
+
+            return new GameSetupFactory(playerSetupFactory);
         }
     }
 }

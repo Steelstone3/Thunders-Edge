@@ -19,5 +19,10 @@ namespace ThundersEdge.Presenters
         {
             presenter.Print($"{characterName.FirstName} {characterName.Surname} took {damage} damage [red]{health.CurrentHealth}[/]/[red]{health.MaximumHealth}[/]");
         }
+
+        public void PrintRemainingCastingToken(IName name, byte remainingCastingPoints)
+        {
+            presenter.Print($"Casting Type: {name.GenericName}\nCasting Points Remaining: {remainingCastingPoints}");
+        }
     }
 }

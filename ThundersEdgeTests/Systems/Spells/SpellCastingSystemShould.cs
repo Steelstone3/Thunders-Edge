@@ -32,8 +32,9 @@ namespace ThundersEdgeTests.Systems.Spells
         public void CastASpell()
         {
             // Given
-            spellCastingPresenter.Setup(scp => scp.SelectAttackingCard(player.Object.Name.GenericName, player.Object.Deck)).Returns(player.Object.Deck.Cards.ToList()[0]);
-            spellCastingPresenter.Setup(scp => scp.SelectDefendingCard(player.Object.Name.GenericName, player.Object.Deck)).Returns(player.Object.Deck.Cards.ToList()[0]);
+            spellCastingPresenter.Setup(scp => scp.PrintPlayerTurn(player.Object.Name));
+            spellCastingPresenter.Setup(scp => scp.SelectAttackingCard(player.Object.Deck)).Returns(player.Object.Deck.Cards.ToList()[0]);
+            spellCastingPresenter.Setup(scp => scp.SelectDefendingCard(player.Object.Deck)).Returns(player.Object.Deck.Cards.ToList()[0]);
             spellCastingPresenter.Setup(scp => scp.SelectSpell(player.Object.Deck.Cards.ToList()[0])).Returns(player.Object.Deck.Cards.ToList()[0].SpellGroup.Spells.ToList()[0]);
             presenter.Setup(p => p.SpellCastingPresenter).Returns(spellCastingPresenter.Object);
             spell.Setup(s => s.CastSpell(damagingSpellCastSystem.Object, player.Object.PointsTokens, card.Object));

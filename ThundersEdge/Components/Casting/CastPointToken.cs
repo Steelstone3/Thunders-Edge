@@ -1,12 +1,16 @@
 using ThundersEdge.Components.Character;
 using ThundersEdge.Components.Interfaces;
+using ThundersEdge.Presenters.Interfaces;
 
 namespace ThundersEdge.Components.Casting
 {
     public class CastPointToken : ICastPointToken
     {
-        public CastPointToken(CastingType castingType)
+        private readonly IPresenter presenter;
+
+        public CastPointToken(IPresenter presenter, CastingType castingType)
         {
+            this.presenter = presenter;
             CastingType = castingType;
             Name = AssignName();
         }
@@ -18,7 +22,7 @@ namespace ThundersEdge.Components.Casting
         public void CostCastingToken(byte castingCost)
         {
             CastingPoints = castingCost <= CastingPoints ? (byte)(CastingPoints - castingCost) : (byte)0;
-            // TODO Create a deck presenter that shows the current state of the casting points as well as the casting cost
+            presenter.DeckPresenter.PrintRemainingCastingToken(Name, CastingPoints);
         }
 
         private IName AssignName()

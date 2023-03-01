@@ -1,6 +1,4 @@
-using System.Linq;
 using ThundersEdge.Entities.Interfaces;
-using ThundersEdge.Systems;
 using ThundersEdge.Systems.Interfaces;
 
 namespace ThundersEdge.Services
@@ -8,9 +6,9 @@ namespace ThundersEdge.Services
     public class GameService : IGameService
     {
         private readonly IGameSetupFactory gameSetupFactory;
-        private readonly ISpellCastingSystem spellCastingSystem;
+        private readonly ICombatSystem spellCastingSystem;
 
-        public GameService(IGameSetupFactory gameSetupFactory, ISpellCastingSystem spellCastingSystem)
+        public GameService(IGameSetupFactory gameSetupFactory, ICombatSystem spellCastingSystem)
         {
             this.gameSetupFactory = gameSetupFactory;
             this.spellCastingSystem = spellCastingSystem;
@@ -19,8 +17,7 @@ namespace ThundersEdge.Services
         public void Run()
         {
             IGame game = gameSetupFactory.Create();
-            spellCastingSystem.CastSpell(game.Players.ToArray()[0], game.Players.ToArray()[1]);
-            spellCastingSystem.CastSpell(game.Players.ToArray()[1], game.Players.ToArray()[0]);
+            spellCastingSystem.Start(game);
         }
     }
 }

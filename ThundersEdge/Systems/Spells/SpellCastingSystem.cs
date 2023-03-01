@@ -1,4 +1,5 @@
 using ThundersEdge.Components.Interfaces;
+using ThundersEdge.Entities;
 using ThundersEdge.Entities.Interfaces;
 using ThundersEdge.Presenters.Interfaces;
 using ThundersEdge.Systems.Interfaces;
@@ -18,8 +19,9 @@ namespace ThundersEdge.Systems.Spells
 
         public void CastSpell(IPlayer attackingPlayer, IPlayer defendingPlayer)
         {
-            ICard attackingCard = presenter.SpellCastingPresenter.SelectAttackingCard(attackingPlayer.Name.GenericName, attackingPlayer.Deck);
-            ICard defendingCard = presenter.SpellCastingPresenter.SelectDefendingCard(attackingPlayer.Name.GenericName, defendingPlayer.Deck);
+            presenter.SpellCastingPresenter.PrintPlayerTurn(attackingPlayer.Name);
+            ICard attackingCard = presenter.SpellCastingPresenter.SelectAttackingCard(attackingPlayer.Deck);
+            ICard defendingCard = presenter.SpellCastingPresenter.SelectDefendingCard(defendingPlayer.Deck);
             ISpell spell = presenter.SpellCastingPresenter.SelectSpell(attackingCard);
 
             spell.CastSpell(damagingSpellCastSystem, attackingPlayer.PointsTokens, defendingCard);
