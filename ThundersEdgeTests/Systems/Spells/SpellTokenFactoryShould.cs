@@ -1,4 +1,4 @@
-using ThundersEdge.Components.Interfaces;
+using ThundersEdge.Assests.Interfaces;
 using ThundersEdge.Systems.Interfaces;
 using ThundersEdge.Systems.Spells;
 using Xunit;

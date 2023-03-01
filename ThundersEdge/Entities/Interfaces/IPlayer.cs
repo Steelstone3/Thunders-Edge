@@ -1,3 +1,4 @@
+using ThundersEdge.Assests.Interfaces;
 using ThundersEdge.Components.Interfaces;
 
 namespace ThundersEdge.Entities.Interfaces

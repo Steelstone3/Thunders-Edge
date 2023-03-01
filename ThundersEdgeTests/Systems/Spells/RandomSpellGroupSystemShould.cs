@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using System.Linq;
+using ThundersEdge.Assests;
+using ThundersEdge.Assests.Interfaces;
 using ThundersEdge.Components.Interfaces;
-using ThundersEdge.Components.SpellGroups;
 using ThundersEdge.Systems;
 using ThundersEdge.Systems.Interfaces;
 using Xunit;

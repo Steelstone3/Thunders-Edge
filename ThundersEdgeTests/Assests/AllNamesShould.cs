@@ -1,9 +1,8 @@
-using ThundersEdge.Components;
-using ThundersEdge.Components.Character;
-using ThundersEdge.Components.Interfaces;
+using ThundersEdge.Assests;
+using ThundersEdge.Assests.Interfaces;
 using Xunit;
 
-namespace ThundersEdgeTests.Components.Character
+namespace ThundersEdgeTests.Assests
 {
     public class AllNamesShould
     {

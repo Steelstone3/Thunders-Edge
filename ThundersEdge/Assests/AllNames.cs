@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using ThundersEdge.Components.Interfaces;
+using ThundersEdge.Assests.Interfaces;
 
-namespace ThundersEdge.Components.Character
+namespace ThundersEdge.Assests
 {
     public class AllNames : IAllNames
     {

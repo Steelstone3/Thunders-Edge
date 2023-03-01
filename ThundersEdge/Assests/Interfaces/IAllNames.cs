@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ThundersEdge.Components.Interfaces
+namespace ThundersEdge.Assests.Interfaces
 {
     public interface IAllNames
     {

@@ -1,14 +1,15 @@
 using Moq;
-using ThundersEdge.Components;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Entities;
 using ThundersEdge.Entities.Interfaces;
+using ThundersEdge.Presenters.Interfaces;
 using Xunit;
 
 namespace ThundersEdgeTests.Entities
 {
     public class CardShould
     {
+        private readonly Mock<IDeckPresenter> deckPresenter = new();
         private readonly Mock<ICharacterName> name = new();
         private readonly Mock<IHealth> health = new();
         private readonly Mock<ISpellGroup> spellGroup = new();
@@ -16,7 +17,7 @@ namespace ThundersEdgeTests.Entities
 
         public CardShould()
         {
-            card = new Card(name.Object, health.Object, spellGroup.Object);
+            card = new Card(deckPresenter.Object, name.Object, health.Object, spellGroup.Object);
         }
 
         [Fact]
@@ -44,14 +45,17 @@ namespace ThundersEdgeTests.Entities
         public void TakeDamage()
         {
             // Given
-            health.Setup(h => h.TakeDamage(25));
-            card = new Card(name.Object, health.Object, spellGroup.Object);
+            const int DAMAGE = 25;
+            health.Setup(h => h.TakeDamage(DAMAGE));
+            deckPresenter.Setup(dp => dp.PrintCardTakingDamage(DAMAGE, name.Object, health.Object));
+            card = new Card(deckPresenter.Object, name.Object, health.Object, spellGroup.Object);
 
             // When
-            card.TakeDamage(25);
+            card.TakeDamage(DAMAGE);
 
             // Then
             health.VerifyAll();
+            deckPresenter.VerifyAll();
         }
     }
 }

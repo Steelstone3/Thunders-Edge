@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Moq;
+using ThundersEdge.Assests.Interfaces;
 using ThundersEdge.Components.Casting;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Components.Spells.Conventional;
@@ -36,7 +37,7 @@ namespace ThundersEdgeTests.Components.Spells.Conventional
         public void ContainsASpellName()
         {
             // Then
-            Assert.Equal("Slash ⚔", spell.Name.GenericName);
+            Assert.Equal("[lightslategrey]Slash ⚔[/]", spell.Name.GenericName);
         }
 
         [Fact]

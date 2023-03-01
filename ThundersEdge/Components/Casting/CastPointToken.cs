@@ -18,6 +18,7 @@ namespace ThundersEdge.Components.Casting
         public void CostCastingToken(byte castingCost)
         {
             CastingPoints = castingCost <= CastingPoints ? (byte)(CastingPoints - castingCost) : (byte)0;
+            // TODO Create a deck presenter that shows the current state of the casting points as well as the casting cost
         }
 
         private IName AssignName()

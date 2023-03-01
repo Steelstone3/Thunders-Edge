@@ -1,3 +1,5 @@
+using ThundersEdge.Assests;
+using ThundersEdge.Assests.Interfaces;
 using ThundersEdge.Components.Casting;
 using ThundersEdge.Components.Character;
 using ThundersEdge.Components.Interfaces;
@@ -8,7 +10,7 @@ namespace ThundersEdge.Components.Spells.Conventional
 {
     public class Slash : ISpell
     {
-        public IName Name => new Name("Slash ⚔");
+        public IName Name => new Name($"{GetSpellColour}Slash ⚔[/]");
         public CastingType CastElement => CastingType.Conventional;
         public byte Damage => 15;
         public byte CastingCost => 1;
@@ -17,5 +19,7 @@ namespace ThundersEdge.Components.Spells.Conventional
         {
             damagingSpellCastSystem.CastSpell(this, castPointTokens, defendingCard);
         }
+
+        private string GetSpellColour => new AllSpellColours().GetSpellColour(CastElement);
     }
 }

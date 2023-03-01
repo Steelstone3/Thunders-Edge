@@ -1,4 +1,5 @@
 using Moq;
+using ThundersEdge.Assests.Interfaces;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Entities;
 using ThundersEdge.Entities.Interfaces;

@@ -1,3 +1,5 @@
+using ThundersEdge.Assests;
+using ThundersEdge.Assests.Interfaces;
 using ThundersEdge.Components.Casting;
 using ThundersEdge.Components.Character;
 using ThundersEdge.Components.Interfaces;
@@ -8,7 +10,7 @@ namespace ThundersEdge.Components.Spells.Fire
 {
     public class FireBolt : ISpell
     {
-        public IName Name => new Name("Fire Bolt 🜂");
+        public IName Name => new Name($"{GetSpellColour}Fire Bolt 🜂[/]");
         public CastingType CastElement => CastingType.Fire;
         public byte Damage => 25;
         public byte CastingCost => 2;
@@ -17,5 +19,7 @@ namespace ThundersEdge.Components.Spells.Fire
         {
             damagingSpellCastSystem.CastSpell(this, castPointTokens, defendingCard);
         }
+
+        private string GetSpellColour => new AllSpellColours().GetSpellColour(CastElement);
     }
 }

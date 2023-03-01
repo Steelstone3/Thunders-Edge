@@ -1,8 +1,9 @@
+using ThundersEdge.Assests.Interfaces;
 using ThundersEdge.Components.Casting;
 using ThundersEdge.Components.Interfaces;
 using Xunit;
 
-namespace ThundersEdgeTests.Components.Casting
+namespace ThundersEdgeTests.Assests
 {
     public class AllCastPointTokensShould
     {

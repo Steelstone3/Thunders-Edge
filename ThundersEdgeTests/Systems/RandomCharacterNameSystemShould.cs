@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using ThundersEdge.Components.Character;
-using ThundersEdge.Components.Interfaces;
+using ThundersEdge.Assests;
+using ThundersEdge.Assests.Interfaces;
 using ThundersEdge.Systems;
 using ThundersEdge.Systems.Interfaces;
 using Xunit;

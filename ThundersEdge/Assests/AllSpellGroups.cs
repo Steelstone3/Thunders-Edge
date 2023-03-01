@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using ThundersEdge.Assests.Interfaces;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdgeTests.Components.SpellGroups.Fire;
 
-namespace ThundersEdge.Components.SpellGroups
+namespace ThundersEdge.Assests
 {
     public class AllSpellGroups : IAllSpellGroups
     {

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Moq;
+using ThundersEdge.Assests.Interfaces;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Entities.Interfaces;
 using ThundersEdge.Presenters.Interfaces;

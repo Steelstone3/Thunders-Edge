@@ -1,5 +1,6 @@
 using Moq;
 using ThundersEdge.Entities.Interfaces;
+using ThundersEdge.Presenters.Interfaces;
 using ThundersEdge.Systems;
 using ThundersEdge.Systems.Interfaces;
 using Xunit;
@@ -8,13 +9,14 @@ namespace ThundersEdgeTests.Systems
 {
     public class CardFactoryShould
     {
+        private readonly Mock<IDeckPresenter> deckPresenter = new();
         private readonly Mock<ICharacterNameFactory> characterNameFactory = new();
         private readonly Mock<ISpellGroupFactory> spellGroupFactory = new();
         private readonly ICardFactory cardFactory;
 
         public CardFactoryShould()
         {
-            cardFactory = new CardFactory(characterNameFactory.Object, spellGroupFactory.Object);
+            cardFactory = new CardFactory(deckPresenter.Object, characterNameFactory.Object, spellGroupFactory.Object);
         }
 
         [Fact]

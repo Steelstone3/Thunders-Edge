@@ -1,4 +1,5 @@
 using Moq;
+using ThundersEdge.Assests.Interfaces;
 using ThundersEdge.Components.Casting;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Components.Spells.Fire;
@@ -35,7 +36,7 @@ namespace ThundersEdgeTests.Components.Spells.Fire
         public void ContainsASpellName()
         {
             // Then
-            Assert.Equal("Fire Bolt 🜂", spell.Name.GenericName);
+            Assert.Equal("[darkorange]Fire Bolt 🜂[/]", spell.Name.GenericName);
         }
 
         [Fact]

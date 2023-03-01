@@ -8,7 +8,7 @@ namespace BubblesDivePlanner.Presenters
     {
         public void Print(string message)
         {
-            AnsiConsole.WriteLine(message);
+            AnsiConsole.MarkupLine(message);
         }
 
         public string GetString(string message)
@@ -23,9 +23,13 @@ namespace BubblesDivePlanner.Presenters
                 Converter = card => $"{card.Name.FirstName} {card.Name.Surname}"
             };
 
-            return AnsiConsole.Prompt(selectionPrompt
+            ICard selection = AnsiConsole.Prompt(selectionPrompt
             .Title(message)
             .AddChoices(deck.Cards));
+
+            Print($"Card selected: {selection.Name.FirstName} {selection.Name.Surname}");
+
+            return selection;
         }
 
         public ISpell GetSpellFromCard(ICard card)
@@ -35,9 +39,13 @@ namespace BubblesDivePlanner.Presenters
                 Converter = spell => spell.Name.GenericName
             };
 
-            return AnsiConsole.Prompt(selectionPrompt
+            ISpell selection = AnsiConsole.Prompt(selectionPrompt
             .Title("Select Spell:")
             .AddChoices(card.SpellGroup.Spells));
+
+            Print($"Spell selected: {selection.Name.GenericName}");
+
+            return selection;
         }
     }
 }

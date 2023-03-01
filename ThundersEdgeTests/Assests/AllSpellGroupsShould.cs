@@ -1,8 +1,8 @@
-using ThundersEdge.Components.Interfaces;
-using ThundersEdge.Components.SpellGroups;
+using ThundersEdge.Assests;
+using ThundersEdge.Assests.Interfaces;
 using Xunit;
 
-namespace ThundersEdgeTests.Components.SpellGroups
+namespace ThundersEdgeTests.Assests
 {
     public class AllSpellGroupsShould
     {
