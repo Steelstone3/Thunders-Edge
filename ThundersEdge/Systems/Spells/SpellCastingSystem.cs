@@ -7,20 +7,20 @@ namespace ThundersEdge.Systems.Spells
 {
     public class SpellCastingSystem : ISpellCastingSystem
     {
-        private readonly ISpellCastingPresenter spellCastingPresenter;
+        private readonly IPresenter presenter;
         private readonly IDamagingSpellCastSystem damagingSpellCastSystem;
 
-        public SpellCastingSystem(ISpellCastingPresenter spellCastingPresenter, IDamagingSpellCastSystem damagingSpellCastSystem)
+        public SpellCastingSystem(IPresenter presenter, IDamagingSpellCastSystem damagingSpellCastSystem)
         {
-            this.spellCastingPresenter = spellCastingPresenter;
+            this.presenter = presenter;
             this.damagingSpellCastSystem = damagingSpellCastSystem;
         }
 
         public void CastSpell(IPlayer attackingPlayer, IPlayer defendingPlayer)
         {
-            ICard attackingCard = spellCastingPresenter.SelectAttackingCard(attackingPlayer.Name.GenericName, attackingPlayer.Deck);
-            ICard defendingCard = spellCastingPresenter.SelectDefendingCard(attackingPlayer.Name.GenericName, defendingPlayer.Deck);
-            ISpell spell = spellCastingPresenter.SelectSpell(attackingCard);
+            ICard attackingCard = presenter.SpellCastingPresenter.SelectAttackingCard(attackingPlayer.Name.GenericName, attackingPlayer.Deck);
+            ICard defendingCard = presenter.SpellCastingPresenter.SelectDefendingCard(attackingPlayer.Name.GenericName, defendingPlayer.Deck);
+            ISpell spell = presenter.SpellCastingPresenter.SelectSpell(attackingCard);
 
             spell.CastSpell(damagingSpellCastSystem, attackingPlayer.PointsTokens, defendingCard);
         }

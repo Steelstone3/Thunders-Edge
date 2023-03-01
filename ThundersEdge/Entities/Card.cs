@@ -6,11 +6,11 @@ namespace ThundersEdge.Entities
 {
     public class Card : ICard
     {
-        private readonly IDeckPresenter deckPresenter;
+        private readonly IPresenter presenter;
 
-        public Card(IDeckPresenter deckPresenter, ICharacterName name, IHealth health, ISpellGroup spellGroup)
+        public Card(IPresenter presenter, ICharacterName name, IHealth health, ISpellGroup spellGroup)
         {
-            this.deckPresenter = deckPresenter;
+            this.presenter = presenter;
             Name = name;
             Health = health;
             SpellGroup = spellGroup;
@@ -23,7 +23,7 @@ namespace ThundersEdge.Entities
         public void TakeDamage(byte damage)
         {
             Health.TakeDamage(damage);
-            deckPresenter.PrintCardTakingDamage(damage, Name, Health);
+            presenter.DeckPresenter.PrintCardTakingDamage(damage, Name, Health);
         }
     }
 }

@@ -9,14 +9,14 @@ namespace ThundersEdgeTests.Systems
 {
     public class CardFactoryShould
     {
-        private readonly Mock<IDeckPresenter> deckPresenter = new();
+        private readonly Mock<IPresenter> presenter = new();
         private readonly Mock<ICharacterNameFactory> characterNameFactory = new();
         private readonly Mock<ISpellGroupFactory> spellGroupFactory = new();
         private readonly ICardFactory cardFactory;
 
         public CardFactoryShould()
         {
-            cardFactory = new CardFactory(deckPresenter.Object, characterNameFactory.Object, spellGroupFactory.Object);
+            cardFactory = new CardFactory(presenter.Object, characterNameFactory.Object, spellGroupFactory.Object);
         }
 
         [Fact]

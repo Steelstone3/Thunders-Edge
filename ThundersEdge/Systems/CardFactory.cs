@@ -8,20 +8,20 @@ namespace ThundersEdge.Systems
 {
     public class CardFactory : ICardFactory
     {
-        private readonly IDeckPresenter deckPresenter;
+        private readonly IPresenter presenter;
         private readonly ICharacterNameFactory characterNameFactory;
         private readonly ISpellGroupFactory spellGroupFactory;
 
-        public CardFactory(IDeckPresenter deckPresenter, ICharacterNameFactory characterNameFactory, ISpellGroupFactory spellGroupFactory)
+        public CardFactory(IPresenter presenter, ICharacterNameFactory characterNameFactory, ISpellGroupFactory spellGroupFactory)
         {
-            this.deckPresenter = deckPresenter;
+            this.presenter = presenter;
             this.characterNameFactory = characterNameFactory;
             this.spellGroupFactory = spellGroupFactory;
         }
 
         public ICard Create()
         {
-            return new Card(deckPresenter, characterNameFactory.Create(), new Health(100, 100), spellGroupFactory.Create());
+            return new Card(presenter, characterNameFactory.Create(), new Health(100, 100), spellGroupFactory.Create());
         }
     }
 }

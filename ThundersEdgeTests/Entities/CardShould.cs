@@ -10,6 +10,7 @@ namespace ThundersEdgeTests.Entities
     public class CardShould
     {
         private readonly Mock<IDeckPresenter> deckPresenter = new();
+        private readonly Mock<IPresenter> presenter = new();
         private readonly Mock<ICharacterName> name = new();
         private readonly Mock<IHealth> health = new();
         private readonly Mock<ISpellGroup> spellGroup = new();
@@ -17,7 +18,7 @@ namespace ThundersEdgeTests.Entities
 
         public CardShould()
         {
-            card = new Card(deckPresenter.Object, name.Object, health.Object, spellGroup.Object);
+            card = new Card(presenter.Object, name.Object, health.Object, spellGroup.Object);
         }
 
         [Fact]
@@ -48,14 +49,15 @@ namespace ThundersEdgeTests.Entities
             const int DAMAGE = 25;
             health.Setup(h => h.TakeDamage(DAMAGE));
             deckPresenter.Setup(dp => dp.PrintCardTakingDamage(DAMAGE, name.Object, health.Object));
-            card = new Card(deckPresenter.Object, name.Object, health.Object, spellGroup.Object);
+            presenter.Setup(p => p.DeckPresenter).Returns(deckPresenter.Object);
+            card = new Card(presenter.Object, name.Object, health.Object, spellGroup.Object);
 
             // When
             card.TakeDamage(DAMAGE);
 
             // Then
             health.VerifyAll();
-            deckPresenter.VerifyAll();
+            presenter.VerifyAll();
         }
     }
 }

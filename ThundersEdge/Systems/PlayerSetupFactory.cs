@@ -1,23 +1,23 @@
 using ThundersEdge.Entities;
 using ThundersEdge.Entities.Interfaces;
-using ThundersEdge.Presenters;
+using ThundersEdge.Presenters.Interfaces;
 using ThundersEdge.Systems.Interfaces;
 
 namespace ThundersEdge.Systems
 {
     public class PlayerSetupFactory : IPlayerSetupFactory
     {
-        private readonly ICharacterPresenter characterPresenter;
+        private readonly IPresenter presenter;
         private readonly IDeckFactory deckFactory;
         private readonly IAllSpellTokenFactory spellTokenFactory;
 
-        public PlayerSetupFactory(ICharacterPresenter characterPresenter, IDeckFactory deckFactory, IAllSpellTokenFactory spellTokenFactory)
+        public PlayerSetupFactory(IPresenter presenter, IDeckFactory deckFactory, IAllSpellTokenFactory spellTokenFactory)
         {
-            this.characterPresenter = characterPresenter;
+            this.presenter = presenter;
             this.deckFactory = deckFactory;
             this.spellTokenFactory = spellTokenFactory;
         }
 
-        public IPlayer Create() => new Player(characterPresenter.AskCharacterName(), deckFactory.Create(), spellTokenFactory.Create());
+        public IPlayer Create() => new Player(presenter.CharacterPresenter.AskCharacterName(), deckFactory.Create(), spellTokenFactory.Create());
     }
 }

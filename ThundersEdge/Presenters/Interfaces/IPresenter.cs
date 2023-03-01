@@ -1,10 +1,14 @@
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Entities.Interfaces;
+using ThundersEdge.Presenters;
 
-namespace BubblesDivePlanner.Presenters
+namespace ThundersEdge.Presenters.Interfaces
 {
     public interface IPresenter
     {
+        IDeckPresenter DeckPresenter { get; }
+        ISpellCastingPresenter SpellCastingPresenter { get; }
+        ICharacterPresenter CharacterPresenter { get; }
         void Print(string message);
         string GetString(string message);
         ICard GetCardFromDeck(string message, IDeck deck);

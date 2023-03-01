@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Moq;
+using Moq.Protected;
 using ThundersEdge.Assests.Interfaces;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Entities.Interfaces;
@@ -14,6 +15,7 @@ namespace ThundersEdgeTests.Systems.Spells
     public class SpellCastingSystemShould
     {
         private readonly Mock<ISpellCastingPresenter> spellCastingPresenter = new();
+        private readonly Mock<IPresenter> presenter = new();
         private readonly Mock<IPlayer> player = new();
         private readonly Mock<ICard> card = new();
         private readonly Mock<IDamagingSpellCastSystem> damagingSpellCastSystem = new();
@@ -23,7 +25,7 @@ namespace ThundersEdgeTests.Systems.Spells
         public SpellCastingSystemShould()
         {
             SetupPlayerStub();
-            spellCastingSystem = new SpellCastingSystem(spellCastingPresenter.Object, damagingSpellCastSystem.Object);
+            spellCastingSystem = new SpellCastingSystem(presenter.Object, damagingSpellCastSystem.Object);
         }
 
         [Fact]
@@ -33,13 +35,15 @@ namespace ThundersEdgeTests.Systems.Spells
             spellCastingPresenter.Setup(scp => scp.SelectAttackingCard(player.Object.Name.GenericName, player.Object.Deck)).Returns(player.Object.Deck.Cards.ToList()[0]);
             spellCastingPresenter.Setup(scp => scp.SelectDefendingCard(player.Object.Name.GenericName, player.Object.Deck)).Returns(player.Object.Deck.Cards.ToList()[0]);
             spellCastingPresenter.Setup(scp => scp.SelectSpell(player.Object.Deck.Cards.ToList()[0])).Returns(player.Object.Deck.Cards.ToList()[0].SpellGroup.Spells.ToList()[0]);
+            presenter.Setup(p => p.SpellCastingPresenter).Returns(spellCastingPresenter.Object);
             spell.Setup(s => s.CastSpell(damagingSpellCastSystem.Object, player.Object.PointsTokens, card.Object));
 
             // When
             spellCastingSystem.CastSpell(player.Object, player.Object);
 
             // Then
-            spellCastingPresenter.VerifyAll();
+            presenter.VerifyAll();
+            spell.VerifyAll();
         }
 
         private void SetupPlayerStub()

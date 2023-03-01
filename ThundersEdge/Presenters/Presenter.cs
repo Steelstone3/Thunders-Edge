@@ -1,11 +1,23 @@
 using Spectre.Console;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Entities.Interfaces;
+using ThundersEdge.Presenters.Interfaces;
 
-namespace BubblesDivePlanner.Presenters
+namespace ThundersEdge.Presenters
 {
     public class Presenter : IPresenter
     {
+        public Presenter()
+        {
+            CharacterPresenter = new CharacterPresenter(this);
+            DeckPresenter = new DeckPresenter(this);
+            SpellCastingPresenter = new SpellCastingPresenter(this);
+        }
+
+        public ICharacterPresenter CharacterPresenter { get; }
+        public IDeckPresenter DeckPresenter { get; }
+        public ISpellCastingPresenter SpellCastingPresenter { get; }
+
         public void Print(string message)
         {
             AnsiConsole.MarkupLine(message);
