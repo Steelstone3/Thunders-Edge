@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Moq;
 using ThundersEdge.Entities.Interfaces;
 using ThundersEdge.Services;

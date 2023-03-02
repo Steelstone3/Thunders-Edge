@@ -1,5 +1,4 @@
 using Moq;
-using Spectre.Console;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Presenters;
 using ThundersEdge.Presenters.Interfaces;
@@ -32,7 +31,7 @@ namespace ThundersEdgeTests.Presenters
             characterName.Setup(n => n.Surname).Returns(SURNAME);
             health.Setup(h => h.CurrentHealth).Returns(CURRENT_HEALTH);
             health.Setup(h => h.MaximumHealth).Returns(MAXIMUM_HEALTH);
-            presenter.Setup(p => p.Print($"{FIRST_NAME} {SURNAME} took {DAMAGE} damage [red]{CURRENT_HEALTH}[/]/[red]{MAXIMUM_HEALTH}[/]"));
+            presenter.Setup(p => p.Print($"{FIRST_NAME} {SURNAME} took [red]{DAMAGE}[/] damage [red]{CURRENT_HEALTH}[/]/[red]{MAXIMUM_HEALTH}[/]"));
 
             // When
             deckPresenter.PrintCardTakingDamage(DAMAGE, characterName.Object, health.Object);
@@ -53,7 +52,7 @@ namespace ThundersEdgeTests.Presenters
 
             // When
             deckPresenter.PrintRemainingCastingToken(name.Object, REMAINING_CASTING_POINTS);
-        
+
             // Then
             presenter.VerifyAll();
         }

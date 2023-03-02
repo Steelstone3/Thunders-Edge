@@ -1,5 +1,6 @@
 using Moq;
 using ThundersEdge.Components.Casting;
+using ThundersEdge.Components.Character;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Presenters.Interfaces;
 using Xunit;
@@ -25,20 +26,23 @@ namespace ThundersEdgeTests.Components.Casting
         }
 
         [Theory]
-        [InlineData(CastingType.Conventional, "Conventional ⚔")]
-        [InlineData(CastingType.Life, "Life ❤")]
-        [InlineData(CastingType.Air, "Air 🜁")]
-        [InlineData(CastingType.Water, "Water 🜄")]
-        [InlineData(CastingType.Earth, "Earth 🜃")]
-        [InlineData(CastingType.Fire, "Fire 🜂")]
-        public void ContainName(CastingType castingType, string name)
+        [InlineData(CastingType.Conventional, "[lightslategrey]Conventional ⚔[/]")]
+        [InlineData(CastingType.Life, "[red]Life ❤[/]")]
+        [InlineData(CastingType.Air, "[grey84]Air 🜁[/]")]
+        [InlineData(CastingType.Water, "[skyblue1]Water 🜄[/]")]
+        [InlineData(CastingType.Earth, "[rosybrown]Earth 🜃[/]")]
+        [InlineData(CastingType.Fire, "[darkorange]Fire 🜂[/]")]
+        public void ContainName(CastingType castingType, string castingName)
         {
             // Given
+            IName name = new Name(castingName);
+
+            // When
             ICastPointToken castPointToken = new CastPointToken(presenter.Object, castingType);
 
             // Then
             Assert.NotNull(castPointToken.Name);
-            Assert.Equal(name, castPointToken.Name.GenericName);
+            Assert.Equivalent(name, castPointToken.Name);
         }
 
         [Fact]
@@ -56,8 +60,8 @@ namespace ThundersEdgeTests.Components.Casting
         {
             // Given
             Mock<IName> name = new();
-            Mock<IDeckPresenter> deckPresenter=new();
-            deckPresenter.Setup(dp =>dp.PrintRemainingCastingToken(name.Object, remainingCastingPoints));
+            Mock<IDeckPresenter> deckPresenter = new();
+            deckPresenter.Setup(dp => dp.PrintRemainingCastingToken(name.Object, remainingCastingPoints));
             presenter.Setup(p => p.DeckPresenter).Returns(deckPresenter.Object);
 
             // When

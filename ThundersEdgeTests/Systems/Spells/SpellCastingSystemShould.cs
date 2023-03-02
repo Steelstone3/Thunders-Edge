@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Moq;
-using Moq.Protected;
 using ThundersEdge.Assests.Interfaces;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Entities.Interfaces;

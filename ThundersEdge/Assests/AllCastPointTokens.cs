@@ -1,8 +1,9 @@
 using ThundersEdge.Assests.Interfaces;
+using ThundersEdge.Components.Casting;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Presenters.Interfaces;
 
-namespace ThundersEdge.Components.Casting
+namespace ThundersEdge.Assests
 {
     public class AllCastPointTokens : IAllCastPointTokens
     {

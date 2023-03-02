@@ -1,14 +1,15 @@
+using ThundersEdge.Components.Character;
 using ThundersEdge.Components.Interfaces;
 
 namespace ThundersEdge.Components.Casting
 {
     public class CastingTypeName : ICastingTypeName
     {
-        public string Convensional => "Conventional ⚔";
-        public string Life => "Life ❤";
-        public string Air => "Air 🜁";
-        public string Water => "Water 🜄";
-        public string Earth => "Earth 🜃";
-        public string Fire => "Fire 🜂";
+        public IName Convensional => new Name("Conventional ⚔");
+        public IName Life => new Name("Life ❤");
+        public IName Air => new Name("Air 🜁");
+        public IName Water => new Name("Water 🜄");
+        public IName Earth => new Name("Earth 🜃");
+        public IName Fire => new Name("Fire 🜂");
     }
 }

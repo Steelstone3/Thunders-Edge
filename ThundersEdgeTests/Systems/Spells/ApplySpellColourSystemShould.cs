@@ -26,10 +26,10 @@ namespace ThundersEdgeTests.Systems.Spells
             IApplySpellColourSystem applySpellColour = new ApplySpellColourSystem();
 
             // When
-            string colour = applySpellColour.ApplySpellColour(castingType, name.Object);
+            IName colour = applySpellColour.ApplySpellColour(castingType, name.Object);
 
             // Then
-            Assert.Equal(expectedColour, colour);
+            Assert.Equal(expectedColour, colour.GenericName);
         }
     }
 }

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using ThundersEdge.Components;
 using ThundersEdge.Entities;
 using ThundersEdge.Entities.Interfaces;
 using ThundersEdge.Systems.Interfaces;

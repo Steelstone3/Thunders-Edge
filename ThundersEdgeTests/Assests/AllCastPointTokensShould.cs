@@ -1,4 +1,5 @@
 using Moq;
+using ThundersEdge.Assests;
 using ThundersEdge.Assests.Interfaces;
 using ThundersEdge.Components.Casting;
 using ThundersEdge.Components.Interfaces;
@@ -9,9 +10,9 @@ namespace ThundersEdgeTests.Assests
 {
     public class AllCastPointTokensShould
     {
-        Mock<IPresenter> presenter = new();
+        private readonly Mock<IPresenter> presenter = new();
         private readonly IAllCastPointTokens allCastPointTokens;
-        
+
         public AllCastPointTokensShould()
         {
             allCastPointTokens = new AllCastPointTokens(presenter.Object);

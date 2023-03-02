@@ -5,6 +5,6 @@ namespace ThundersEdge.Systems.Interfaces
 {
     public interface IApplySpellColourSystem
     {
-        string ApplySpellColour(CastingType castingType, IName spellName);
+        IName ApplySpellColour(CastingType castingType, IName spellName);
     }
 }

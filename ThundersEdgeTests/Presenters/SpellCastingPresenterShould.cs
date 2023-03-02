@@ -25,7 +25,7 @@ namespace ThundersEdgeTests.Presenters
             Mock<IName> name = new();
             name.Setup(n => n.GenericName).Returns("Alfie");
             presenter.Setup(p => p.Print($"\n\n\n{name.Object.GenericName}'s Turn\n"));
-        
+
             // When
             spellCastingPresenter.PrintPlayerTurn(name.Object);
 

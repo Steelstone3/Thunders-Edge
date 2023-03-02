@@ -3,7 +3,6 @@ using ThundersEdge.Assests.Interfaces;
 using ThundersEdge.Components.Casting;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Entities.Interfaces;
-using ThundersEdge.Presenters.Interfaces;
 using ThundersEdge.Systems.Interfaces;
 using ThundersEdge.Systems.Spells;
 using Xunit;

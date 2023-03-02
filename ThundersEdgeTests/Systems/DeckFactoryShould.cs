@@ -1,4 +1,3 @@
-using Castle.Components.DictionaryAdapter;
 using Moq;
 using ThundersEdge;
 using ThundersEdge.Entities.Interfaces;

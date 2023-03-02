@@ -23,7 +23,7 @@ namespace ThundersEdgeTests.Systems
         public void StartCombat()
         {
             // Given
-            game.Setup(g => g.Players).Returns(new List<IPlayer>() {player.Object, player.Object});
+            game.Setup(g => g.Players).Returns(new List<IPlayer>() { player.Object, player.Object });
             spellCastingSystem.Setup(scs => scs.CastSpell(player.Object, player.Object));
 
             // When

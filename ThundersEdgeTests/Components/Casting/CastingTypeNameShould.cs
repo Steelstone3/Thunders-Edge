@@ -1,4 +1,5 @@
 using ThundersEdge.Components.Casting;
+using ThundersEdge.Components.Character;
 using ThundersEdge.Components.Interfaces;
 using Xunit;
 
@@ -12,12 +13,12 @@ namespace ThundersEdgeTests.Components.Casting
         public void ContainTypeNames()
         {
             // Then
-            Assert.Equal("Conventional ⚔", castingTypeName.Convensional);
-            Assert.Equal("Life ❤", castingTypeName.Life);
-            Assert.Equal("Air 🜁", castingTypeName.Air);
-            Assert.Equal("Water 🜄", castingTypeName.Water);
-            Assert.Equal("Earth 🜃", castingTypeName.Earth);
-            Assert.Equal("Fire 🜂", castingTypeName.Fire);
+            Assert.Equivalent(new Name("Conventional ⚔"), castingTypeName.Convensional);
+            Assert.Equivalent(new Name("Life ❤"), castingTypeName.Life);
+            Assert.Equivalent(new Name("Air 🜁"), castingTypeName.Air);
+            Assert.Equivalent(new Name("Water 🜄"), castingTypeName.Water);
+            Assert.Equivalent(new Name("Earth 🜃"), castingTypeName.Earth);
+            Assert.Equivalent(new Name("Fire 🜂"), castingTypeName.Fire);
         }
     }
 }

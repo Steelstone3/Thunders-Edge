@@ -1,6 +1,7 @@
 using ThundersEdge.Components.Character;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Presenters.Interfaces;
+using ThundersEdge.Systems.Spells;
 
 namespace ThundersEdge.Components.Casting
 {
@@ -31,12 +32,12 @@ namespace ThundersEdge.Components.Casting
 
             return CastingType switch
             {
-                CastingType.Conventional => new Name(castingTypeName.Convensional),
-                CastingType.Life => new Name(castingTypeName.Life),
-                CastingType.Air => new Name(castingTypeName.Air),
-                CastingType.Water => new Name(castingTypeName.Water),
-                CastingType.Earth => new Name(castingTypeName.Earth),
-                CastingType.Fire => new Name(castingTypeName.Fire),
+                CastingType.Conventional => new ApplySpellColourSystem().ApplySpellColour(CastingType, castingTypeName.Convensional),
+                CastingType.Life => new ApplySpellColourSystem().ApplySpellColour(CastingType, castingTypeName.Life),
+                CastingType.Air => new ApplySpellColourSystem().ApplySpellColour(CastingType, castingTypeName.Air),
+                CastingType.Water => new ApplySpellColourSystem().ApplySpellColour(CastingType, castingTypeName.Water),
+                CastingType.Earth => new ApplySpellColourSystem().ApplySpellColour(CastingType, castingTypeName.Earth),
+                CastingType.Fire => new ApplySpellColourSystem().ApplySpellColour(CastingType, castingTypeName.Fire),
                 _ => null,
             };
         }

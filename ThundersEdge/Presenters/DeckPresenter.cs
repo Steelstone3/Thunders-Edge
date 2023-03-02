@@ -13,11 +13,9 @@ namespace ThundersEdge.Presenters
             this.presenter = presenter;
         }
 
-        public void PrintCardTakingDamage(byte damage, ICard card) => presenter.Print($"{card.Name.FirstName} {card.Name.Surname} took {damage} damage");
-
         public void PrintCardTakingDamage(byte damage, ICharacterName characterName, IHealth health)
         {
-            presenter.Print($"{characterName.FirstName} {characterName.Surname} took {damage} damage [red]{health.CurrentHealth}[/]/[red]{health.MaximumHealth}[/]");
+            presenter.Print($"{characterName.FirstName} {characterName.Surname} took [red]{damage}[/] damage [red]{health.CurrentHealth}[/]/[red]{health.MaximumHealth}[/]");
         }
 
         public void PrintRemainingCastingToken(IName name, byte remainingCastingPoints)
