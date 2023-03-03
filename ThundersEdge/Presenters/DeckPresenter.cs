@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Entities.Interfaces;
 using ThundersEdge.Presenters.Interfaces;
@@ -21,6 +24,17 @@ namespace ThundersEdge.Presenters
         public void PrintRemainingCastingToken(IName name, byte remainingCastingPoints)
         {
             presenter.Print($"Casting Type: {name.GenericName}\nCasting Points Remaining: {remainingCastingPoints}");
+        }
+
+        public string PrintCardSummary(ICard card)
+        {
+            string summary = $"{card.Name.FirstName} {card.Name.Surname} | [red]{card.Health.CurrentHealth}[/]/[red]{card.Health.MaximumHealth}[/] | | ";
+
+            summary += string.Join("   ", card.SpellGroup.Spells.Select(s => s.Name.GenericName));
+            summary = summary.TrimEnd();
+            summary += " | |";
+
+            return summary;
         }
     }
 }

@@ -13,6 +13,6 @@ namespace ThundersEdge.Presenters
             this.presenter = presenter;
         }
 
-        public IName AskCharacterName() => new Name(presenter.GetString("Enter player name:"));
+        public IName AskPlayerName() => new Name(presenter.GetString("Enter player name:"));
     }
 }

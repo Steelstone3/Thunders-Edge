@@ -18,6 +18,6 @@ namespace ThundersEdge.Systems
             this.spellTokenFactory = spellTokenFactory;
         }
 
-        public IPlayer Create() => new Player(presenter.CharacterPresenter.AskCharacterName(), deckFactory.Create(), spellTokenFactory.Create());
+        public IPlayer Create() => new Player(presenter.CharacterPresenter.AskPlayerName(), deckFactory.Create(), spellTokenFactory.Create());
     }
 }

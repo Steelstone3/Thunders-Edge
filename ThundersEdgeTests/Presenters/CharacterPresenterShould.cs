@@ -23,7 +23,7 @@ namespace ThundersEdgeTests.Presenters
             presenter.Setup(p => p.GetString("Enter player name:")).Returns("Bob");
 
             // When
-            IName name = characterPresenter.AskCharacterName();
+            IName name = characterPresenter.AskPlayerName();
 
             // Then
             presenter.VerifyAll();

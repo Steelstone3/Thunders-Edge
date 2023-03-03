@@ -32,7 +32,7 @@ namespace ThundersEdge.Presenters
         {
             SelectionPrompt<ICard> selectionPrompt = new()
             {
-                Converter = card => $"{card.Name.FirstName} {card.Name.Surname}"
+                Converter = card => $"{DeckPresenter.PrintCardSummary(card)}"
             };
 
             ICard selection = AnsiConsole.Prompt(selectionPrompt
@@ -55,7 +55,6 @@ namespace ThundersEdge.Presenters
             .Title("Select Spell:")
             .AddChoices(card.SpellGroup.Spells));
 
-            // TODO can make this separate
             Print($"Spell selected: {selection.Name.GenericName}");
 
             return selection;

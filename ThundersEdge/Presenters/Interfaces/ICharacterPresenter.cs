@@ -4,6 +4,6 @@ namespace ThundersEdge.Presenters
 {
     public interface ICharacterPresenter
     {
-        IName AskCharacterName();
+        IName AskPlayerName();
     }
 }

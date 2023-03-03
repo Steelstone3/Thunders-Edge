@@ -26,7 +26,7 @@ namespace ThundersEdgeTests.Systems
         public void CreateAPlayer()
         {
             // Given
-            characterPresenter.Setup(cp => cp.AskCharacterName());
+            characterPresenter.Setup(cp => cp.AskPlayerName());
             presenter.Setup(p => p.CharacterPresenter).Returns(characterPresenter.Object);
             deckFactory.Setup(df => df.Create()).Returns(new Mock<IDeck>().Object);
             spellTokenFactory.Setup(pdf => pdf.Create()).Returns(new Mock<IAllCastPointTokens>().Object);
