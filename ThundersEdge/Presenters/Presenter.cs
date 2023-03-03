@@ -32,7 +32,7 @@ namespace ThundersEdge.Presenters
         {
             SelectionPrompt<ICard> selectionPrompt = new()
             {
-                Converter = card => $"{DeckPresenter.PrintCardSummary(card)}"
+                Converter = card => $"{card.GetSummary()}"
             };
 
             ICard selection = AnsiConsole.Prompt(selectionPrompt

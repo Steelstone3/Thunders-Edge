@@ -1,3 +1,4 @@
+using Castle.Components.DictionaryAdapter;
 using Moq;
 using ThundersEdge.Assests;
 using ThundersEdge.Assests.Interfaces;
@@ -124,6 +125,140 @@ namespace ThundersEdgeTests.Assests
 
             // Then
             Assert.Same(allCastPointTokens.FireCastPointToken, castPointToken);
+        }
+
+        [Fact]
+        public void CheckHasCastingPoints()
+        {
+            // When
+            bool hasCastingPoints = allCastPointTokens.HasCastingPoints();
+
+            // Then
+            Assert.True(hasCastingPoints);
+        }
+
+        [Fact]
+        public void CheckHasNoCastingPointsInOneCastingTypeConventional()
+        {
+            // Given
+            Mock<IName> name = new();
+            Mock<IDeckPresenter> deckPresenter = new();
+            deckPresenter.Setup(dp => dp.PrintRemainingCastingToken(name.Object, 0));
+            presenter.Setup(p => p.DeckPresenter).Returns(deckPresenter.Object);
+            allCastPointTokens.ConventionalCastPointToken.CostCastingToken(byte.MaxValue);
+
+            // When
+            bool hasCastingPoints = allCastPointTokens.HasCastingPoints();
+
+            // Then
+            Assert.False(hasCastingPoints);
+        }
+
+        [Fact]
+        public void CheckHasNoCastingPointsInOneCastingTypeLife()
+        {
+            // Given
+            Mock<IName> name = new();
+            Mock<IDeckPresenter> deckPresenter = new();
+            deckPresenter.Setup(dp => dp.PrintRemainingCastingToken(name.Object, 0));
+            presenter.Setup(p => p.DeckPresenter).Returns(deckPresenter.Object);
+            allCastPointTokens.LifeCastPointToken.CostCastingToken(byte.MaxValue);
+
+            // When
+            bool hasCastingPoints = allCastPointTokens.HasCastingPoints();
+
+            // Then
+            Assert.False(hasCastingPoints);
+        }
+
+        [Fact]
+        public void CheckHasNoCastingPointsInOneCastingTypeAir()
+        {
+            // Given
+            Mock<IName> name = new();
+            Mock<IDeckPresenter> deckPresenter = new();
+            deckPresenter.Setup(dp => dp.PrintRemainingCastingToken(name.Object, 0));
+            presenter.Setup(p => p.DeckPresenter).Returns(deckPresenter.Object);
+            allCastPointTokens.AirCastPointToken.CostCastingToken(byte.MaxValue);
+
+            // When
+            bool hasCastingPoints = allCastPointTokens.HasCastingPoints();
+
+            // Then
+            Assert.False(hasCastingPoints);
+        }
+
+        [Fact]
+        public void CheckHasNoCastingPointsInOneCastingTypeWater()
+        {
+            // Given
+            Mock<IName> name = new();
+            Mock<IDeckPresenter> deckPresenter = new();
+            deckPresenter.Setup(dp => dp.PrintRemainingCastingToken(name.Object, 0));
+            presenter.Setup(p => p.DeckPresenter).Returns(deckPresenter.Object);
+            allCastPointTokens.WaterCastPointToken.CostCastingToken(byte.MaxValue);
+
+            // When
+            bool hasCastingPoints = allCastPointTokens.HasCastingPoints();
+
+            // Then
+            Assert.False(hasCastingPoints);
+        }
+
+        [Fact]
+        public void CheckHasNoCastingPointsInOneCastingTypeEarth()
+        {
+            // Given
+            Mock<IName> name = new();
+            Mock<IDeckPresenter> deckPresenter = new();
+            deckPresenter.Setup(dp => dp.PrintRemainingCastingToken(name.Object, 0));
+            presenter.Setup(p => p.DeckPresenter).Returns(deckPresenter.Object);
+            allCastPointTokens.EarthCastPointToken.CostCastingToken(byte.MaxValue);
+
+            // When
+            bool hasCastingPoints = allCastPointTokens.HasCastingPoints();
+
+            // Then
+            Assert.False(hasCastingPoints);
+        }
+
+        [Fact]
+        public void CheckHasNoCastingPointsInOneCastingTypeFire()
+        {
+            // Given
+            Mock<IName> name = new();
+            Mock<IDeckPresenter> deckPresenter = new();
+            deckPresenter.Setup(dp => dp.PrintRemainingCastingToken(name.Object, 0));
+            presenter.Setup(p => p.DeckPresenter).Returns(deckPresenter.Object);
+            allCastPointTokens.FireCastPointToken.CostCastingToken(byte.MaxValue);
+
+            // When
+            bool hasCastingPoints = allCastPointTokens.HasCastingPoints();
+
+            // Then
+            Assert.False(hasCastingPoints);
+        }
+
+        [Fact]
+        public void CheckHasNoCastingPoints()
+        {
+            // Given
+            Mock<IName> name = new();
+            Mock<IDeckPresenter> deckPresenter = new();
+            deckPresenter.Setup(dp => dp.PrintRemainingCastingToken(name.Object, 0));
+            presenter.Setup(p => p.DeckPresenter).Returns(deckPresenter.Object);
+            allCastPointTokens.ConventionalCastPointToken.CostCastingToken(byte.MaxValue);
+            allCastPointTokens.LifeCastPointToken.CostCastingToken(byte.MaxValue);
+            allCastPointTokens.AirCastPointToken.CostCastingToken(byte.MaxValue);
+            allCastPointTokens.WaterCastPointToken.CostCastingToken(byte.MaxValue);
+            allCastPointTokens.EarthCastPointToken.CostCastingToken(byte.MaxValue);
+            allCastPointTokens.FireCastPointToken.CostCastingToken(byte.MaxValue);
+
+            // When
+            bool hasCastingPoints = allCastPointTokens.HasCastingPoints();
+
+            // Then
+            Assert.False(hasCastingPoints);
         }
     }
 }

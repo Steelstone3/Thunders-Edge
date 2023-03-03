@@ -1,4 +1,3 @@
-using ThundersEdge.Components.Character;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Presenters.Interfaces;
 using ThundersEdge.Systems.Spells;

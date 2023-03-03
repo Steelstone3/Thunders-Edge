@@ -6,14 +6,14 @@ using ThundersEdge.Entities.Interfaces;
 using ThundersEdge.Systems.Interfaces;
 using ThundersEdge.Systems.Spells;
 
-namespace ThundersEdge.Components.Spells.Conventional
+namespace ThundersEdge.Components.Spells.Fire
 {
-    public class Slash : ISpell
+    public class Burn : ISpell
     {
-        public IName Name => new ApplySpellColourSystem().ApplySpellColour(CastElement, new Name("Slash ⚔"));
-        public CastingType CastElement => CastingType.Conventional;
-        public byte Damage => 15;
+        public IName Name => new ApplySpellColourSystem().ApplySpellColour(CastElement, new Name("Burn 🜂"));
+        public CastingType CastElement => CastingType.Fire;
         public byte CastingCost => 1;
+        public byte Damage => 10;
 
         public void CastSpell(IDamagingSpellCastSystem damagingSpellCastSystem, IAllCastPointTokens castPointTokens, ICard defendingCard)
         {

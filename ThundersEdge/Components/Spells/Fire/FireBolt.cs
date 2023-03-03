@@ -10,12 +10,10 @@ namespace ThundersEdge.Components.Spells.Fire
 {
     public class FireBolt : ISpell
     {
-        private readonly IName name = new Name("Fire Bolt 🜂");
-        public IName Name => GetColouredSpellName;
+        public IName Name => new ApplySpellColourSystem().ApplySpellColour(CastElement, new Name("Fire Bolt 🜂"));
         public CastingType CastElement => CastingType.Fire;
         public byte Damage => 25;
         public byte CastingCost => 2;
-        private IName GetColouredSpellName => new ApplySpellColourSystem().ApplySpellColour(CastElement, name);
 
         public void CastSpell(IDamagingSpellCastSystem damagingSpellCastSystem, IAllCastPointTokens castPointTokens, ICard defendingCard)
         {

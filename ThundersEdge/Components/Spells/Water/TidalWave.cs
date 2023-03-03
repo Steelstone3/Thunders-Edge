@@ -10,12 +10,10 @@ namespace ThundersEdgeTests.Components.Spells.Water
 {
     public class TidalWave : ISpell
     {
-        private readonly IName name = new Name("Tidal Wave 🜄");
-        public IName Name => GetColouredSpellName;
+        public IName Name => new ApplySpellColourSystem().ApplySpellColour(CastElement, new Name("Tidal Wave 🜄"));
         public CastingType CastElement => CastingType.Water;
         public byte CastingCost => 3;
         public byte Damage => 35;
-        private IName GetColouredSpellName => new ApplySpellColourSystem().ApplySpellColour(CastElement, name);
 
         public void CastSpell(IDamagingSpellCastSystem damagingSpellCastSystem, IAllCastPointTokens castPointTokens, ICard defendingCard)
         {

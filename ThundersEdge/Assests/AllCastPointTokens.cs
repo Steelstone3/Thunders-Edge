@@ -60,5 +60,10 @@ namespace ThundersEdge.Assests
                 _ => null,
             };
         }
+
+        public bool HasCastingPoints()
+        {
+            return ConventionalCastPointToken.CastingPoints != 0 && LifeCastPointToken.CastingPoints != 0 && AirCastPointToken.CastingPoints != 0 && WaterCastPointToken.CastingPoints != 0 && EarthCastPointToken.CastingPoints != 0 && FireCastPointToken.CastingPoints != 0;
+        }
     }
 }

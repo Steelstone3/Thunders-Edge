@@ -9,6 +9,7 @@ namespace ThundersEdgeTests.Components.SpellGroups.Fire
     {
         public IEnumerable<ISpell> Spells { get; } = new List<ISpell>()
         {
+            new Burn(),
             new FireBolt(),
             new Slash(),
         };

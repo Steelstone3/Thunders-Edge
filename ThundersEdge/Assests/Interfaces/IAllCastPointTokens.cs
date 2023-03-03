@@ -12,5 +12,6 @@ namespace ThundersEdge.Assests.Interfaces
         ICastPointToken EarthCastPointToken { get; }
         ICastPointToken FireCastPointToken { get; }
         ICastPointToken GetCastPointTokenOfType(CastingType castingType);
+        bool HasCastingPoints();
     }
 }
