@@ -1,23 +1,19 @@
-using ThundersEdge.Assests.Interfaces;
 using ThundersEdge.Components.Casting;
 using ThundersEdge.Components.Character;
-using ThundersEdge.Components.Interfaces;
-using ThundersEdge.Entities.Interfaces;
-using ThundersEdge.Systems.Interfaces;
+using ThundersEdge.Components.Spells;
 using ThundersEdge.Systems.Spells;
 
 namespace ThundersEdgeTests.Components.Spells.Water
 {
-    public class TidalWave : ISpell
+    public class TidalWave : Spell
     {
-        public IName Name => new ApplySpellColourSystem().ApplySpellColour(CastElement, new Name("Tidal Wave 🜄"));
-        public CastingType CastElement => CastingType.Water;
-        public byte CastingCost => 3;
-        public byte Damage => 35;
-
-        public void CastSpell(IDamagingSpellCastSystem damagingSpellCastSystem, IAllCastPointTokens castPointTokens, ICard defendingCard)
+        public TidalWave()
         {
-            damagingSpellCastSystem.CastSpell(this, castPointTokens, defendingCard);
+            CastElement = CastingType.Water;
+            Name = new ApplySpellColourSystem().ApplySpellColour(CastElement, new Name("Tidal Wave 🜄"));
+            CastingCost = 3;
+            RemainingCastingPoints = 6;
+            Damage = 35;
         }
     }
 }

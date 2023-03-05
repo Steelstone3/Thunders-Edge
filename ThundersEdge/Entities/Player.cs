@@ -6,15 +6,13 @@ namespace ThundersEdge.Entities
 {
     public class Player : IPlayer
     {
-        public Player(IName name, IDeck deck, IAllCastPointTokens pointsDeck)
+        public Player(IName name, IDeck deck)
         {
             Name = name;
-            PointsTokens = pointsDeck;
             Deck = deck;
         }
 
         public IDeck Deck { get; }
-        public IAllCastPointTokens PointsTokens { get; }
         public IName Name { get; }
     }
 }

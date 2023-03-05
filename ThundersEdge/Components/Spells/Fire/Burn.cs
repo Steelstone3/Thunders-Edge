@@ -1,23 +1,18 @@
-using ThundersEdge.Assests.Interfaces;
 using ThundersEdge.Components.Casting;
 using ThundersEdge.Components.Character;
-using ThundersEdge.Components.Interfaces;
-using ThundersEdge.Entities.Interfaces;
-using ThundersEdge.Systems.Interfaces;
 using ThundersEdge.Systems.Spells;
 
 namespace ThundersEdge.Components.Spells.Fire
 {
-    public class Burn : ISpell
+    public class Burn : Spell
     {
-        public IName Name => new ApplySpellColourSystem().ApplySpellColour(CastElement, new Name("Burn 🜂"));
-        public CastingType CastElement => CastingType.Fire;
-        public byte CastingCost => 1;
-        public byte Damage => 10;
-
-        public void CastSpell(IDamagingSpellCastSystem damagingSpellCastSystem, IAllCastPointTokens castPointTokens, ICard defendingCard)
+        public Burn()
         {
-            damagingSpellCastSystem.CastSpell(this, castPointTokens, defendingCard);
+            CastElement = CastingType.Fire;
+            Name = new ApplySpellColourSystem().ApplySpellColour(CastElement, new Name("Burn 🜂"));
+            CastingCost = 1;
+            RemainingCastingPoints = 15;
+            Damage = 10;
         }
     }
 }

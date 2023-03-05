@@ -9,15 +9,13 @@ namespace ThundersEdge.Systems
     {
         private readonly IPresenter presenter;
         private readonly IDeckFactory deckFactory;
-        private readonly IAllSpellTokenFactory spellTokenFactory;
 
-        public PlayerSetupFactory(IPresenter presenter, IDeckFactory deckFactory, IAllSpellTokenFactory spellTokenFactory)
+        public PlayerSetupFactory(IPresenter presenter, IDeckFactory deckFactory)
         {
             this.presenter = presenter;
             this.deckFactory = deckFactory;
-            this.spellTokenFactory = spellTokenFactory;
         }
 
-        public IPlayer Create() => new Player(presenter.CharacterPresenter.AskPlayerName(), deckFactory.Create(), spellTokenFactory.Create());
+        public IPlayer Create() => new Player(presenter.CharacterPresenter.AskPlayerName(), deckFactory.Create());
     }
 }

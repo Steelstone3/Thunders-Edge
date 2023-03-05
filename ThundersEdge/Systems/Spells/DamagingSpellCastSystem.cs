@@ -1,19 +1,24 @@
-using ThundersEdge.Assests.Interfaces;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Entities.Interfaces;
+using ThundersEdge.Presenters.Interfaces;
 using ThundersEdge.Systems.Interfaces;
 
 namespace ThundersEdge.Systems.Spells
 {
     public class DamagingSpellCastSystem : IDamagingSpellCastSystem
     {
-        public void CastSpell(ISpell spell, IAllCastPointTokens castPointTokens, ICard defendingCard)
-        {
-            ICastPointToken castPointToken = castPointTokens.GetCastPointTokenOfType(spell.CastElement);
+        private readonly IPresenter presenter;
 
-            if (castPointToken.CastingPoints >= spell.CastingCost)
+        public DamagingSpellCastSystem(IPresenter presenter)
+        {
+            this.presenter = presenter;
+        }
+
+        public void CastSpell(ISpell spell, ICard defendingCard)
+        {
+            if (spell.RemainingCastingPoints >= spell.CastingCost)
             {
-                castPointToken.CostCastingToken(spell.CastingCost);
+                spell.CostCastingPoints(presenter);
                 defendingCard.TakeDamage(spell.Damage);
             }
         }

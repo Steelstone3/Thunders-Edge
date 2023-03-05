@@ -1,5 +1,4 @@
 using Moq;
-using ThundersEdge.Assests.Interfaces;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Entities;
 using ThundersEdge.Entities.Interfaces;
@@ -11,12 +10,11 @@ namespace ThundersEdgeTests.Models
     {
         private readonly Mock<IName> name = new();
         private readonly Mock<IDeck> deck = new();
-        private readonly Mock<IAllCastPointTokens> pointsTokens = new();
         private readonly IPlayer player;
 
         public PlayerShould()
         {
-            player = new Player(name.Object, deck.Object, pointsTokens.Object);
+            player = new Player(name.Object, deck.Object);
         }
 
         [Fact]
@@ -31,13 +29,6 @@ namespace ThundersEdgeTests.Models
         {
             // Then
             Assert.NotNull(player.Deck);
-        }
-
-        [Fact]
-        public void ContainsPointsDeck()
-        {
-            // Then
-            Assert.NotNull(player.PointsTokens);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace ThundersEdge
 
             IGameSetupFactory gameSetupFactory = CreateGame(presenter, randomCharacterNameSystem, randomSpellGroupSystem);
 
-            IDamagingSpellCastSystem damagingSpellCastSystem = new DamagingSpellCastSystem();
+            IDamagingSpellCastSystem damagingSpellCastSystem = new DamagingSpellCastSystem(presenter);
             ISpellCastingSystem spellCastingSystem = new SpellCastingSystem(presenter, damagingSpellCastSystem);
             ICombatSystem combatSystem = new CombatSystem(spellCastingSystem);
 
@@ -34,9 +34,7 @@ namespace ThundersEdge
             ICardFactory cardFactory = new CardFactory(presenter, characterNameFactory, spellGroupFactory);
             IDeckFactory deckFactory = new DeckFactory(cardFactory);
 
-            IAllSpellTokenFactory pointsDeckFactory = new AllSpellTokenFactory(presenter);
-
-            IPlayerSetupFactory playerSetupFactory = new PlayerSetupFactory(presenter, deckFactory, pointsDeckFactory);
+            IPlayerSetupFactory playerSetupFactory = new PlayerSetupFactory(presenter, deckFactory);
 
             return new GameSetupFactory(playerSetupFactory);
         }
