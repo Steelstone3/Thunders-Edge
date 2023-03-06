@@ -15,8 +15,11 @@ namespace ThundersEdge.Systems
 
         public void Start(IGame game)
         {
-            spellCastingSystem.CastSpell(game.Players.ToArray()[0], game.Players.ToArray()[1]);
-            spellCastingSystem.CastSpell(game.Players.ToArray()[1], game.Players.ToArray()[0]);
+            do
+            {
+                spellCastingSystem.CastSpell(game.Players.ToArray()[0], game.Players.ToArray()[1]);
+                spellCastingSystem.CastSpell(game.Players.ToArray()[1], game.Players.ToArray()[0]);
+            } while (game.Players.ToArray()[0].Deck.IsDeckStillInPlay() || game.Players.ToArray()[1].Deck.IsDeckStillInPlay());
         }
     }
 }

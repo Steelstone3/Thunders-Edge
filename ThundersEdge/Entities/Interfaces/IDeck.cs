@@ -6,5 +6,6 @@ namespace ThundersEdge.Entities.Interfaces
     {
         // TODO AH Check the health (IsAlive on card in linq comparing each) of each card and if all are dead
         IEnumerable<ICard> Cards { get; }
+        bool IsDeckStillInPlay();
     }
 }

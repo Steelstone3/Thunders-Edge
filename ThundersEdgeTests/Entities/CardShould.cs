@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Net;
 using Moq;
 using ThundersEdge.Components.Casting;
 using ThundersEdge.Components.Interfaces;
@@ -60,6 +61,59 @@ namespace ThundersEdgeTests.Entities
             // Then
             health.VerifyAll();
             presenter.VerifyAll();
+        }
+
+        [Fact]
+        public void DetermineIsCardStillInPlay()
+        {
+            // Given
+            Mock<ISpell> spell = new();
+            spell.Setup(s => s.RemainingCastingPoints).Returns(20);
+            spellGroup.Setup(sg => sg.Spells).Returns(new List<ISpell>() { spell.Object });
+            health.Setup(h => h.CurrentHealth).Returns(100);
+            card = new Card(presenter.Object, name.Object, health.Object, spellGroup.Object);
+
+            // When
+            bool isInPlay = card.IsCardStillInPlay();
+
+            // Then
+            Assert.True(isInPlay);
+        }
+
+        [Fact]
+        public void DetermineIsCardStillInPlayCardWithNoCastingPoints()
+        {
+            // Given
+            Mock<ISpell> conventionalSpell = new();
+            conventionalSpell.Setup(s => s.RemainingCastingPoints).Returns(0);
+            Mock<ISpell> fireSpell = new();
+            fireSpell.Setup(s => s.RemainingCastingPoints).Returns(20);
+            spellGroup.Setup(sg => sg.Spells).Returns(new List<ISpell>() { conventionalSpell.Object, fireSpell.Object });
+            health.Setup(h => h.CurrentHealth).Returns(100);
+            card = new Card(presenter.Object, name.Object, health.Object, spellGroup.Object);
+
+            // When
+            bool isInPlay = card.IsCardStillInPlay();
+
+            // Then
+            Assert.False(isInPlay);
+        }
+
+        [Fact]
+        public void DetermineIsCardStillInPlayCardWithNoHealth()
+        {
+            // Given
+             Mock<ISpell> spell = new();
+            spell.Setup(s => s.RemainingCastingPoints).Returns(0);
+            spellGroup.Setup(sg => sg.Spells).Returns(new List<ISpell>() { spell.Object });
+            health.Setup(h => h.CurrentHealth).Returns(0);
+            card = new Card(presenter.Object, name.Object, health.Object, spellGroup.Object);
+
+            // When
+            bool isInPlay = card.IsCardStillInPlay();
+
+            // Then
+            Assert.False(isInPlay);
         }
 
         [Fact]

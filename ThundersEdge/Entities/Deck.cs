@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using ThundersEdge.Entities.Interfaces;
 
 namespace ThundersEdge.Entities
@@ -11,5 +12,10 @@ namespace ThundersEdge.Entities
         }
 
         public IEnumerable<ICard> Cards { get; }
+
+        public bool IsDeckStillInPlay()
+        {
+            return Cards.Any(c => c.IsCardStillInPlay());
+        }
     }
 }

@@ -37,5 +37,19 @@ namespace ThundersEdge.Entities
 
             return summary;
         }
+
+        public bool IsCardStillInPlay()
+        {
+            if (Health.CurrentHealth == 0)
+            {
+                return false;
+            }
+            else if (SpellGroup.Spells.Any(s => s.RemainingCastingPoints == 0))
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }
