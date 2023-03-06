@@ -21,7 +21,7 @@ namespace ThundersEdge
 
             IDamagingSpellCastSystem damagingSpellCastSystem = new DamagingSpellCastSystem(presenter);
             ISpellCastingSystem spellCastingSystem = new SpellCastingSystem(presenter, damagingSpellCastSystem);
-            ICombatSystem combatSystem = new CombatSystem(spellCastingSystem);
+            ICombatSystem combatSystem = new CombatSystem(presenter, spellCastingSystem);
 
             IGameService gameService = new GameService(gameSetupFactory, combatSystem);
             gameService.Run();

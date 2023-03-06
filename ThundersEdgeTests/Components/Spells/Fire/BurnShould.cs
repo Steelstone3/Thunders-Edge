@@ -19,7 +19,6 @@ namespace ThundersEdgeTests.Components.Spells.Fire
             spell = new Burn();
         }
 
-
         [Fact]
         public void ContainsASpellName()
         {

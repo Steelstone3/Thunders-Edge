@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
+using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Entities.Interfaces;
+using ThundersEdge.Presenters.Interfaces;
 
 namespace ThundersEdge.Entities
 {
@@ -13,10 +15,16 @@ namespace ThundersEdge.Entities
 
         public IEnumerable<ICard> Cards { get; }
 
-        public bool IsDeckStillInPlay()
+        public bool IsDeckStillInPlay(IPresenter presenter, IName name)
         {
-            // TODO Add message here about loosing the game if false
-            return Cards.Any(c => c.IsCardStillInPlay());
+            bool isDeckStillInPlay = Cards.Any(c => c.IsCardStillInPlay());
+
+            if(!isDeckStillInPlay)
+            {
+                presenter.DeckPresenter.PrintDeckDefeated(name);
+            }
+
+            return isDeckStillInPlay;
         }
     }
 }

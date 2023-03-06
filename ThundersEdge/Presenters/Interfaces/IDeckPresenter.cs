@@ -6,5 +6,6 @@ namespace ThundersEdge.Presenters.Interfaces
     {
         void PrintCardTakingDamage(byte damage, ICharacterName characterName, IHealth health);
         void PrintRemainingCastingToken(IName name, byte remainingCastingPoints);
+        void PrintDeckDefeated(IName winningPlayerName);
     }
 }
