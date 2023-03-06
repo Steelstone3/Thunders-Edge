@@ -15,6 +15,7 @@ namespace ThundersEdge.Entities
 
         public bool IsDeckStillInPlay()
         {
+            // TODO Add message here about loosing the game if false
             return Cards.Any(c => c.IsCardStillInPlay());
         }
     }

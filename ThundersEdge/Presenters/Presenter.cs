@@ -1,3 +1,4 @@
+using System.Linq;
 using Spectre.Console;
 using ThundersEdge.Components.Interfaces;
 using ThundersEdge.Entities.Interfaces;
@@ -37,7 +38,7 @@ namespace ThundersEdge.Presenters
 
             ICard selection = AnsiConsole.Prompt(selectionPrompt
             .Title(selectionMessage)
-            .AddChoices(deck.Cards));
+            .AddChoices(deck.Cards.Where(c => c.IsCardStillInPlay())));
 
             Print($"{selectedMessage} {selection.Name.FirstName} {selection.Name.Surname}");
 

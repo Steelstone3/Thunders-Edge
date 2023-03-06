@@ -15,7 +15,7 @@ namespace ThundersEdge.Components.Character
 
         public void TakeDamage(byte damage)
         {
-            CurrentHealth = (byte)(CurrentHealth - damage);
+            CurrentHealth = damage <= CurrentHealth ? (byte)(CurrentHealth - damage) : (byte)0;
         }
     }
 }

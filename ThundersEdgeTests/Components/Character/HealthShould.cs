@@ -27,14 +27,18 @@ namespace ThundersEdgeTests.Components.Character
             Assert.Equal(100, health.CurrentHealth);
         }
 
-        [Fact]
-        public void TakeDamage()
+        [Theory]
+        [InlineData(25, 75)]
+        [InlineData(50, 50)]
+        [InlineData(100, 0)]
+        [InlineData(101, 0)]
+        public void TakeDamage(byte damage, byte currentHealth)
         {
             // When
-            health.TakeDamage(25);
+            health.TakeDamage(damage);
 
             // Then
-            Assert.Equal(75, health.CurrentHealth);
+            Assert.Equal(currentHealth, health.CurrentHealth);
             Assert.Equal(100, health.MaximumHealth);
         }
     }
