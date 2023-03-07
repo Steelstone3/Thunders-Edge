@@ -9,13 +9,13 @@ namespace ThundersEdgeTests.Services
     public class GameServiceShould
     {
         private readonly Mock<IGame> game = new();
-        private readonly Mock<ICombatSystem> spellCastingSystem = new();
+        private readonly Mock<ICombatSystem> combatSystem = new();
         private readonly Mock<IGameSetupFactory> gameSetupFactory = new();
         private readonly IGameService gameService;
 
         public GameServiceShould()
         {
-            gameService = new GameService(gameSetupFactory.Object, spellCastingSystem.Object);
+            gameService = new GameService(gameSetupFactory.Object, combatSystem.Object);
         }
 
         [Fact]
@@ -23,14 +23,15 @@ namespace ThundersEdgeTests.Services
         {
             // Given
             gameSetupFactory.Setup(gsf => gsf.Create()).Returns(game.Object);
-            spellCastingSystem.Setup(scs => scs.Start(game.Object));
+            combatSystem.Setup(cs => cs.Start(game.Object));
+            combatSystem.Setup(cs => cs.DetermineVictor(game.Object));
 
             // When
             gameService.Run();
 
             // Then
             gameSetupFactory.VerifyAll();
-            spellCastingSystem.VerifyAll();
+            combatSystem.VerifyAll();
         }
     }
 }

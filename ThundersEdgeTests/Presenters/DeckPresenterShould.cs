@@ -56,21 +56,5 @@ namespace ThundersEdgeTests.Presenters
             // Then
             presenter.VerifyAll();
         }
-
-        [Fact]
-        public void PrintDeckDefeated()
-        {
-            // Given
-            const string WINNING_PLAYER_NAME = "Bob";
-            Mock<IName> name = new();
-            name.Setup(n => n.GenericName).Returns(WINNING_PLAYER_NAME);
-            presenter.Setup(p => p.Print($"Game over! {WINNING_PLAYER_NAME} wins the match"));
-
-            // When
-            deckPresenter.PrintDeckDefeated(name.Object);
-
-            // Then
-            presenter.VerifyAll();
-        }
     }
 }

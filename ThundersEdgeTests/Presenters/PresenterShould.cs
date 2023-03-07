@@ -37,5 +37,12 @@ namespace ThundersEdgeTests.Presenters
             // Then
             Assert.NotNull(presenter.CharacterPresenter);
         }
+
+        [Fact]
+        public void ContainsCombatPresenter()
+        {
+            // Then
+            Assert.NotNull(presenter.CombatPresenter);
+        }
     }
 }

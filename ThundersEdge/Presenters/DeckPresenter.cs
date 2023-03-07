@@ -21,10 +21,5 @@ namespace ThundersEdge.Presenters
         {
             presenter.Print($"Casting Type: {name.GenericName}\nCasting Points Remaining: {remainingCastingPoints}");
         }
-
-        public void PrintDeckDefeated(IName winningPlayerName)
-        {
-            presenter.Print($"Game over! {winningPlayerName.GenericName} wins the match");
-        }
     }
 }

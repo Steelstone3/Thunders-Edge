@@ -1,9 +1,10 @@
-using ThundersEdge.Presenters.Interfaces;
+using ThundersEdge.Entities.Interfaces;
 
 namespace ThundersEdge.Systems.Interfaces
 {
     public interface ICombatSystem
     {
-        void Start(Entities.Interfaces.IGame game);
+        void DetermineVictor(IGame game);
+        void Start(IGame game);
     }
 }

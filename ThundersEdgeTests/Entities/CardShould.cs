@@ -103,7 +103,7 @@ namespace ThundersEdgeTests.Entities
         public void DetermineIsCardStillInPlayCardWithNoHealth()
         {
             // Given
-             Mock<ISpell> spell = new();
+            Mock<ISpell> spell = new();
             spell.Setup(s => s.RemainingCastingPoints).Returns(0);
             spellGroup.Setup(sg => sg.Spells).Returns(new List<ISpell>() { spell.Object });
             health.Setup(h => h.CurrentHealth).Returns(0);

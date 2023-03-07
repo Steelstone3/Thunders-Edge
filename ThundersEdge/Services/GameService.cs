@@ -6,18 +6,19 @@ namespace ThundersEdge.Services
     public class GameService : IGameService
     {
         private readonly IGameSetupFactory gameSetupFactory;
-        private readonly ICombatSystem spellCastingSystem;
+        private readonly ICombatSystem combatSystem;
 
-        public GameService(IGameSetupFactory gameSetupFactory, ICombatSystem spellCastingSystem)
+        public GameService(IGameSetupFactory gameSetupFactory, ICombatSystem combatSystem)
         {
             this.gameSetupFactory = gameSetupFactory;
-            this.spellCastingSystem = spellCastingSystem;
+            this.combatSystem = combatSystem;
         }
 
         public void Run()
         {
             IGame game = gameSetupFactory.Create();
-            spellCastingSystem.Start(game);
+            combatSystem.Start(game);
+            combatSystem.DetermineVictor(game);
         }
     }
 }

@@ -8,6 +8,8 @@ namespace ThundersEdge.Presenters.Interfaces
         IDeckPresenter DeckPresenter { get; }
         ISpellCastingPresenter SpellCastingPresenter { get; }
         ICharacterPresenter CharacterPresenter { get; }
+        ICombatPresenter CombatPresenter { get; }
+
         void Print(string message);
         string GetString(string message);
         ICard GetCardFromDeck(string selectionMessage, string selectedMessage, IDeck deck);

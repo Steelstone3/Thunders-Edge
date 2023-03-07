@@ -13,11 +13,13 @@ namespace ThundersEdge.Presenters
             CharacterPresenter = new CharacterPresenter(this);
             DeckPresenter = new DeckPresenter(this);
             SpellCastingPresenter = new SpellCastingPresenter(this);
+            CombatPresenter = new CombatPresenter(this);
         }
 
         public ICharacterPresenter CharacterPresenter { get; }
         public IDeckPresenter DeckPresenter { get; }
         public ISpellCastingPresenter SpellCastingPresenter { get; }
+        public ICombatPresenter CombatPresenter { get; }
 
         public void Print(string message)
         {
