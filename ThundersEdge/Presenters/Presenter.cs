@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Spectre.Console;
 using ThundersEdge.Components.Interfaces;
@@ -33,6 +34,13 @@ namespace ThundersEdge.Presenters
 
         public ICard GetCardFromDeck(string selectionMessage, string selectedMessage, IDeck deck)
         {
+            IEnumerable<ICard> cards = deck.Cards.Where(c => c.IsCardStillInPlay());
+
+            if (cards?.Any() != true)
+            {
+                return null;
+            }
+
             SelectionPrompt<ICard> selectionPrompt = new()
             {
                 Converter = card => $"{card.GetSummary()}"
@@ -40,7 +48,7 @@ namespace ThundersEdge.Presenters
 
             ICard selection = AnsiConsole.Prompt(selectionPrompt
             .Title(selectionMessage)
-            .AddChoices(deck.Cards.Where(c => c.IsCardStillInPlay())));
+            .AddChoices(cards));
 
             Print($"{selectedMessage} {selection.Name.FirstName} {selection.Name.Surname}");
 
@@ -49,6 +57,11 @@ namespace ThundersEdge.Presenters
 
         public ISpell GetSpellFromCard(ICard card)
         {
+            if (card == null)
+            {
+                return null;
+            }
+
             SelectionPrompt<ISpell> selectionPrompt = new()
             {
                 Converter = spell => spell.Name.GenericName
