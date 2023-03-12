@@ -50,7 +50,9 @@ namespace ThundersEdgeTests.Entities
             // Given
             Mock<ICard> card = new();
             card.Setup(c => c.IsCardStillInPlay()).Returns(false);
-            List<ICard> cards = new() { card.Object, card.Object };
+            Mock<ICard> anotherCard = new();
+            anotherCard.Setup(c => c.IsCardStillInPlay()).Returns(false);
+            List<ICard> cards = new() { card.Object, card.Object, anotherCard.Object };
             deck = new Deck(cards);
 
             // When

@@ -4,6 +4,6 @@ namespace ThundersEdge.Systems.Interfaces
 {
     public interface ISpellCastingSystem
     {
-        void CastSpell(IPlayer attackingPlayer, IPlayer defendingPlayer);
+        bool CastSpell(IPlayer attackingPlayer, IPlayer defendingPlayer);
     }
 }

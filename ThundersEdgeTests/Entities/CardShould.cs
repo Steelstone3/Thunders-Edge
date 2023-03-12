@@ -104,6 +104,23 @@ namespace ThundersEdgeTests.Entities
         {
             // Given
             Mock<ISpell> spell = new();
+            spell.Setup(s => s.RemainingCastingPoints).Returns(1);
+            spellGroup.Setup(sg => sg.Spells).Returns(new List<ISpell>() { spell.Object });
+            health.Setup(h => h.CurrentHealth).Returns(0);
+            card = new Card(presenter.Object, name.Object, health.Object, spellGroup.Object);
+
+            // When
+            bool isInPlay = card.IsCardStillInPlay();
+
+            // Then
+            Assert.False(isInPlay);
+        }
+
+        [Fact]
+        public void DetermineIsCardStillInPlayCardWithNoHealthOrCastingPoints()
+        {
+            // Given
+            Mock<ISpell> spell = new();
             spell.Setup(s => s.RemainingCastingPoints).Returns(0);
             spellGroup.Setup(sg => sg.Spells).Returns(new List<ISpell>() { spell.Object });
             health.Setup(h => h.CurrentHealth).Returns(0);

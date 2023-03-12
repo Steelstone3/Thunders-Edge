@@ -16,14 +16,21 @@ namespace ThundersEdge.Systems.Spells
             this.damagingSpellCastSystem = damagingSpellCastSystem;
         }
 
-        public void CastSpell(IPlayer attackingPlayer, IPlayer defendingPlayer)
+        public bool CastSpell(IPlayer attackingPlayer, IPlayer defendingPlayer)
         {
-            presenter.SpellCastingPresenter.PrintPlayerTurn(attackingPlayer.Name);
-            ICard attackingCard = presenter.SpellCastingPresenter.SelectAttackingCard(attackingPlayer.Deck);
-            ICard defendingCard = presenter.SpellCastingPresenter.SelectDefendingCard(defendingPlayer.Deck);
-            ISpell spell = presenter.SpellCastingPresenter.SelectSpell(attackingCard);
+            if (attackingPlayer.Deck.IsDeckStillInPlay() && defendingPlayer.Deck.IsDeckStillInPlay())
+            {
+                presenter.SpellCastingPresenter.PrintPlayerTurn(attackingPlayer.Name);
+                ICard attackingCard = presenter.SpellCastingPresenter.SelectAttackingCard(attackingPlayer.Deck);
+                ICard defendingCard = presenter.SpellCastingPresenter.SelectDefendingCard(defendingPlayer.Deck);
+                ISpell spell = presenter.SpellCastingPresenter.SelectSpell(attackingCard);
 
-            spell.CastSpell(damagingSpellCastSystem, defendingCard);
+                spell.CastSpell(damagingSpellCastSystem, defendingCard);
+
+                return true;
+            }
+
+            return false;
         }
     }
 }

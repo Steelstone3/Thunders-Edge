@@ -19,13 +19,14 @@ namespace ThundersEdge.Systems
 
         public void Start(IGame game)
         {
-            bool isGameRunning = game.Players.ToArray()[0].Deck.IsDeckStillInPlay() || game.Players.ToArray()[1].Deck.IsDeckStillInPlay();
+            bool isSpellCastSuccessfulPlayer1;
+            bool isSpellCastSuccessfulPlayer2;
 
             do
             {
-                spellCastingSystem.CastSpell(game.Players.ToArray()[0], game.Players.ToArray()[1]);
-                spellCastingSystem.CastSpell(game.Players.ToArray()[1], game.Players.ToArray()[0]);
-            } while (isGameRunning);
+                isSpellCastSuccessfulPlayer1 = spellCastingSystem.CastSpell(game.Players.ToArray()[0], game.Players.ToArray()[1]);
+                isSpellCastSuccessfulPlayer2 = spellCastingSystem.CastSpell(game.Players.ToArray()[1], game.Players.ToArray()[0]);
+            } while (isSpellCastSuccessfulPlayer1 && isSpellCastSuccessfulPlayer2);
         }
 
         public void DetermineVictor(IGame game)

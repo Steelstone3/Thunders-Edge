@@ -27,18 +27,14 @@ namespace ThundersEdgeTests.Systems
         public void StartCombat()
         {
             // Given
-            Mock<IDeck> deck = new();
-            deck.Setup(d => d.IsDeckStillInPlay()).Returns(false);
-            player.Setup(p => p.Deck).Returns(deck.Object);
             game.Setup(g => g.Players).Returns(new List<IPlayer>() { player.Object, player.Object });
-            spellCastingSystem.Setup(scs => scs.CastSpell(player.Object, player.Object));
+            spellCastingSystem.Setup(scs => scs.CastSpell(player.Object, player.Object)).Returns(false);
 
             // When
             combatSystem.Start(game.Object);
 
             // Then
             spellCastingSystem.VerifyAll();
-            player.VerifyAll();
         }
 
         [Fact]
