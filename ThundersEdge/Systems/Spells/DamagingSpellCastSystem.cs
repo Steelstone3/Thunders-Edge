@@ -19,7 +19,7 @@ namespace ThundersEdge.Systems.Spells
             if (spell.RemainingCastingPoints >= spell.CastingCost)
             {
                 spell.CostCastingPoints(presenter);
-                defendingCard.TakeDamage(spell.Damage);
+                defendingCard?.TakeDamage(spell.Damage);
             }
         }
     }
