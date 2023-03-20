@@ -23,7 +23,7 @@ namespace ThundersEdgeTests.Systems.Spells
         [Fact]
         public void CastASpell()
         {
-            // // Given
+            // Given
             const int SPELL_CASTING_POINTS = 2;
             const int CURRENT_CASTING_POINTS = 2;
             const int DAMAGE = 25;
