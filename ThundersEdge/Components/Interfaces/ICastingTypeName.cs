@@ -1,3 +1,5 @@
+using ThundersEdge.Components.Casting;
+
 namespace ThundersEdge.Components.Interfaces
 {
     public interface ICastingTypeName
@@ -8,5 +10,6 @@ namespace ThundersEdge.Components.Interfaces
         IName Water { get; }
         IName Earth { get; }
         IName Fire { get; }
+        IName GetCastingTypeName(CastingType castingType);
     }
 }
